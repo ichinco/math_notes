@@ -13,7 +13,22 @@
 
 % phrases that are often written but should not
 % have to be
-\renewcommand{\wlog}{without loss of generality}
+\newcommand{\WLOG}{without loss of generality}
 
 % rings, ideals
 \newcommand{\ideal}[1]{\mathfrak{#1}}
+
+% valuation
+\newcommand{\ext}[1]{\widehat{#1}}
+
+% morphisms, functors, natural transformations
+\newcommand{\comp}{\circ}
+\renewcommand{\ker}{\mathrm{ker}\;}
+
+% greek symbols make-over
+\renewcommand{\phi}{\varphi}
+
+% related to proof formating
+\newcommand{\pfitem}[1]{
+\vskip 10pt
+\noindent \emph{#1}}

@@ -1,4 +1,7 @@
-These notes cover basic theory of valuation.
+These notes cover basic theory of valuation in preparation for 
+understanding cycle modules in \cite{Rost96}. The bulk of the 
+content is obtained and re-organized from \cite{LangAlg} and 
+\cite{MatsCA}
 
 \section{General Valuation Theory}
 
@@ -10,15 +13,18 @@ $G$ is the disjoint union:
 \[
 P \dU P^{-1} \dU \{1\}.
 \]
-In this case, we call $P$ the \emph{positive elements} of $G$.
+In this case, we call $P$ the \emph{positive elements} of $G$. Let 
+$(G, P)$ denote a group with an ordering by $P$; at times, we 
+simply write $G$ if the positive elements of the ordering is 
+clear.
 \end{defn}
 
-For an ordering on $G$, we say that $g < h$ if $hg^{-1} \in P$.
-It is easy to see that $1 < h$ if and only if $h \in P$. The
+For an ordering on $(G, P)$, we say that $g < h$ if $hg^{-1} \in 
+P$. It is easy to see that $1 < h$ if and only if $h \in P$. The
 following are clear consequences:
 
 \begin{prop}
-Let $G$ be a group as above with an ordering by $P$. Then:
+Let $(G, P)$ be a group with an ordering. Then:
 
 \begin{enumerate}
 \item For $g, h \in G$, either $g < h$, $g = h$, or $h < g$.
@@ -49,29 +55,34 @@ $g = 1$ or $g \in P^{-1}$.
 \end{proof}
 
 \begin{rmk}
-Suppose $G$ is any group with an ordering, then for any $g \in G$
-such that $g^n = 1$ for any $n \in \Z$, then $g = 1$. Indeed, 
-assume \wlog that $g \in P$ to obtain a contradiction. Then $g^n 
-\in P$ for any $n$; this contradicts the fact that $1 \notin P$.
+Suppose $(G, P)$ is any group with an ordering, then for any $g 
+\in G$ such that $g^n = 1$ for any $n \in \Z$, then $g = 1$. 
+Indeed, assume \WLOG that $g \in P$ to obtain a contradiction. 
+Then $g^n \in P$ for any $n$; this contradicts the fact that $1 
+\notin P$.
 
 In particular, \emph{the map $g \mapsto g^n$ is injective}.
 \end{rmk}
 
 \begin{defn}
+Write $\ext{G}$ for $G \dU \{\infty\}$, where $\infty$ is a 
+formal symbol, and extend the order to $\ext{G}$ by requiring that 
+$v(\infty) > v(x)$ for any $x \in G$.
+
 Let $K$ be a field. A \emph{valuation} of $K$ is an association 
-$v: K \to G \dU \{-\infty\}$ for some $G$ with an ordering (by 
-$P$, say) and an extra symbol $-\infty$
+$v: K \to \ext{G}$ for some $(G, P)$ with an ordering:
+
 \begin{enumerate}
-\item[\textbf{V1.}] $v(x) = -\infty$ if and only if $x = 0 \in K$,
+\item[\textbf{V1.}] $v(x) = \infty$ if and only if $x = 0 \in K$,
 
 \item[\textbf{V2.}] $v(xy) = v(x)v(y)$ for all $x, y \in K$,
 
-\item[\textbf{V3.}] $v(x + y) \leq \max(v(x), v(y))$
+\item[\textbf{V3.}] $v(x + y) \geq \min(v(x), v(y))$
 \end{enumerate}
 \end{defn}
 
-\begin{rmk}
-It is easy to see that a valuation $v: K \to G\dU \{-\infty\}$
+\begin{rmk}\label{rmk_grp_morph}
+It is easy to see that a valuation $v: K \to \ext{G}$
 defines group homomorphism from $K^*$ to $G$. Noting \textbf{V2.},
 we need only to verify that $v(1) = 1$. To see this, note that 
 $v(1) = v(1 \cdot 1) = v(1)v(1)$. It follows that $v(1) = 
@@ -81,16 +92,19 @@ $v(x^{-1}) = v(x)^{-1}$.
 
 We say that a valuation $v$ is \emph{trivial} if $v(K^*) = 1$.
 
-\begin{prop}
+\begin{prop}\label{prop_val_rng_are_local}
 Let $K$ be a field, and $R$ is a subring of $K$ for which $x \in 
-R$ or $x^{-1} \in R$. Then $R$ is a local ring.
+R$ or $x^{-1} \in R$. Then $R$ is a local domain.
 \end{prop}
 \begin{proof}
+That $R$ is a domain follows from the fact that $R$ is a subring of
+a field.
+
 We show that the set $\ideal{m}$ of nonunits of $R$ is an ideal 
 (hence maximal). It is clear that if $x \in R$ is not a unit, then
 $rx$ is not a unit for any $r \in R$.
 
-Suppose $x, y \in \ideal{m}$ are non-units, then assume \wlog that 
+Suppose $x, y \in \ideal{m}$ are non-units, then assume \WLOG that 
 $x/y \in R$ (or else $y/x \in R$). Then $1 + x/y \in R$. But
 \[
 1 + x/y = (x + y)/y.
@@ -98,5 +112,85 @@ $x/y \in R$ (or else $y/x \in R$). Then $1 + x/y \in R$. But
 If $x + y$ is a unit, then $y$ is a unit, contradicting the 
 assumption that $y \in \ideal{m}$. It follows that $\ideal{m}$
 is an ideal. Maximality follows from the fact that any ideal
-properly containing $\ideal{m}$ must in fact be unital.
+properly containing $\ideal{m}$ must in fact be unital, and 
+uniqueness follows from the fact that any other maximal ideal must
+be contained in $\ideal{m}$.
+\end{proof}
+
+\begin{defn}
+Let $\phi: G \to G'$ be a group homomorphism between two groups 
+with orderings $P$ and $P'$ respectively. We say that $\phi$ is
+\emph{order preserving} if $\phi(P) \subset P'$.
+
+Let $v: K \to \ext{G}$ and $w: K \to \ext{G'}$ be two valuations 
+on $K$. We say that \emph{$v$ is equivalent to $w$} if there
+exists an order preserving group homomorphism $\phi: G \to G'$
+such that $\phi \comp v = w$ for all $x \in K^*$ and $v(0) = 
+w(0)$.
+\end{defn}
+
+The following tie together valuations on $K$ and valuation rings
+of $K$:
+
+\begin{thm}\label{thm_valrng_eq_val}
+There exists an one-to-one correspondence between equivalence 
+classes of valuations on $K$ and valuation rings of $K$.
+\end{thm}
+\begin{proof}
+We first construct the associations:
+
+\pfitem{From valuation on $K$ to valuation rings}: Fix $v: K \to 
+\ext{G}$ a valuation on $K$ with $(G, P)$ the associated group 
+with ordering. Consider the subset $R = \{x \in K | v(x) \geq 
+1\}$. 
+
+By the \textbf{V2}. and the fact that $P$ is closed under 
+multiplication, $R$ is closed under multiplication. Similarly,
+if $x, y \in R$, then $v(x + y) \geq \min\{v(x), v(y)\} \geq 1.$
+Then $x + y \in R$. Finally, $0 \in R$ since $v(0) = \infty > 
+v(1) = 1$. It follows that $R$ is a ring.
+
+To see that $R$ is a valuation ring of $K$, note that if $x 
+\notin K$, then $v(x) < 1$. It follows that $v(x^{-1}) > 1$, and 
+$x^{-1} \in R$.
+
+Finally, to show that $R$ is independent of the choice of valuation,
+notice that for any two equivalent valuations, the collection of
+elements with valuation at least $1$ is precisely $R$.
+
+\pfitem{From valuation rings to valuations on $K$}: Given $R$
+a valuation ring, which is local by Prop. 
+\ref{prop_val_rng_are_local}. Let $\ideal{m}$ denote the maximal
+ideal, $U$ denote the set of units of $R$ and $\ideal{m}^{-1}$
+the inverse in $K$ of the nonzero elements in $\ideal{m}$. 
+
+If $x \notin R$, then $x \notin U$ and neither is $x^{-1}$. But 
+$x^{-1} \in R$, so $x^{-1} \in \ideal{m}$. So $K = \ideal{m} \dU
+U \dU \ideal{m}^{-1}$. It is clear that $U$ is a (normal) subgroup
+of $K^*$. 
+
+It is clear that the quotient $K^*/U$ is ordered by 
+$\ideal{m}^{*}/U*$. Setting $\infty = 0$, we see that the map $K 
+\to \ext{K^*/U}$ defines a valuation on $K$.
+
+\pfitem{Equivalences}: To see that the associations are inverses, 
+let $v: K \to \ext{G}$ be any valuation (with $P$ the ordering on 
+$G$), and let $R$ be its associated valuation ring. We show that
+$v$ is equivalent to the valuation defined by $R$, represented
+by $v_R$.
+
+As mentioned in the Remark \ref{rmk_grp_morph}, there exists a 
+group homomorphism between $K^* \to G$. In particular, the 
+kernel of this map consists precisely of the units of $R$, and we
+have a homomorphism $\phi: K^*/U \to G$.
+
+It is clear that $\ideal{m}^*/U = \phi^{-1}(P)$. Hence $\phi$ is
+order preserving, and by construction, $\phi \comp v_R = v$, 
+proving equivalence of $v$ and $v_R$.
+
+To conclude, for a valuation ring $R$ of $K$, let $v_R$ be its
+induced valuation and let $R'$ be the valuation ring associated to
+$v_R$. We show that $R = R'$. This is clear, since by construction
+$R' = \{x \in K | v_R(x) \geq 1\} = \{x | x \in R\} = R.$
+
 \end{proof}
