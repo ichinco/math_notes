@@ -200,6 +200,24 @@ $v_R$. We show that $R = R'$. This is clear, since by construction
 $R' = \{x \in K | v_R(x) \geq 1\} = \{x | x \in R\} = R.$
 \end{proof}
 
+We now explore more properties of valuation rings.
+
+\begin{prop}
+A valuation ring $(R, \ideal{m})$ of $K$ is integrally closed.
+\end{prop}
+\begin{proof}
+Fix $x \in K$, and assume for a contradiction that
+\[
+x^n + a_1x^{n - 1} + \cdots + a_n = 0
+\]
+with $a_i \in R$ for $i = 1,\cdots n$ but $x \notin R$. Then 
+$x^{-1} \in \ideal{m}$, and we also have
+\[
+1 + a_1x^{-1} + \cdots + a_nx^{-n} = 0 \in \ideal{m}.
+\]
+This implies that $1 \in \ideal{m}$, a contradiction.
+\end{proof}
+
 If $R$ is a valuation ring of $K$, then so is any subring $R'$ of 
 $K$ that contains $K$. Here are some facts that follow from the 
 setup we have discussed.
@@ -274,3 +292,11 @@ $R$ is obtained as a composite of $R$ and a subring of
 $R/\ideal{m}$. 
 \end{rmk}
 
+\begin{defn}\label{defn_dominates}
+Let $(R, \ideal{m}) \subset (S, \ideal{n})$ be an inclusion of 
+local rings. We say that \emph{$S$ dominates $R$} if $\ideal{m} = 
+\ideal{n} \cap R$.
+\end{defn}
+
+The following theorem will prove particularly useful for valuative 
+criteria in algebraic geometry. See (\cite{Hart}, \S 2.4)
