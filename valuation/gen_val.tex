@@ -222,3 +222,31 @@ a valuation ring of $R'/\ideal{m'}$. Then $S$ has the same field
 of fractions as $R'$.
 \end{enumerate}
 \end{prop}
+\begin{proof}
+For the following, let $\phi: R' \to R'/\ideal{m'}$ denote the
+canonical projection map.
+
+\pfbullet{(1)}: Fix $x \in \ideal{m'}$. Then $x^{-1} \notin R'$,
+and not in $R$. Then $x \in R$, not as a unit. So $x \in 
+\ideal{m}$. If $\ideal{m'} = \ideal{m}$, then $x \notin R$ implies
+that $x^{-1} \in \ideal{m} = \ideal{m'}$, whence $R = R'$, which
+contradicts the assumption that $R \subsetneq R'$.
+
+\pfbullet{(2)}: By (1), we know that $\ideal{m'} \subset R$, and
+since $R/\ideal{m'}$, which is a subring of the field 
+$R'/\ideal{m'}$, which is a domain, $\ideal{m'}$ is prime of $R$.
+
+Notice that $R - \ideal{m'}$ are units of $R'$. Then, 
+$R_{\ideal{m'}} \subset R'$. To conclude, note that the maximal 
+ideal of $R_{\ideal{m'}}$ is contained $\ideal{m'}$, whence equal 
+to $\ideal{m'}$ by (1). It follows from (1) that $R' = 
+R_{\ideal{m'}}$ as desired.
+
+\pfbullet{(3)}: Fix $x \in R'/\ideal{m'}$. If $x \notin 
+R/\ideal{m'}$ then $x$ is given by some $y \in R'$ such that $y 
+\notin R$. Then $y^{-1} \in R$ and $x^{-1} = \phi(y)^{-1} = 
+\phi(y^{-1}) \in R/\ideal{m'}$ as desired.
+
+\pfbullet{(4)}: 
+
+\end{proof}
