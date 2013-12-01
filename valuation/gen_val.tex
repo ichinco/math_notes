@@ -198,5 +198,27 @@ To conclude, for a valuation ring $R$ of $K$, let $v_R$ be its
 induced valuation and let $R'$ be the valuation ring associated to
 $v_R$. We show that $R = R'$. This is clear, since by construction
 $R' = \{x \in K | v_R(x) \geq 1\} = \{x | x \in R\} = R.$
-
 \end{proof}
+
+If $R$ is a valuation ring of $K$, then so is any subring $R'$ of 
+$K$ that contains $K$. Here are some facts that follow from the 
+setup we have discussed.
+
+\begin{prop}\label{thm_mats_10_1}
+Let $R, R'$ be valuation rings of $K$ with maximal ideals 
+$\ideal{m}$ and $\ideal{m'}$ respectively. Suppose that $R 
+\subsetneq R'$. Then
+
+\begin{enumerate}
+\item $\ideal{m'} \subsetneq \ideal{m}.$
+
+\item $\ideal{m'}$ is a prime of $R$ and $R' = R_{\ideal{m'}}.$
+
+\item $R/\ideal{m'}$ is a valuation ring of the residue field 
+$R'/\ideal{m'}$.
+
+\item $S$ is a subring of $R'$ whose image in $R'/\ideal{m'}$ is 
+a valuation ring of $R'/\ideal{m'}$. Then $S$ has the same field
+of fractions as $R'$.
+\end{enumerate}
+\end{prop}
