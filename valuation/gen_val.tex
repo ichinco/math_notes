@@ -82,7 +82,21 @@ $v(x^{-1}) = v(x)^{-1}$.
 We say that a valuation $v$ is \emph{trivial} if $v(K^*) = 1$.
 
 \begin{prop}
-Let $K$ be a field, and $R$ is a subset for which $x \in R$ or
-$x^{-1} \in R$. Then $R$ is a local ring.
+Let $K$ be a field, and $R$ is a subring of $K$ for which $x \in 
+R$ or $x^{-1} \in R$. Then $R$ is a local ring.
 \end{prop}
+\begin{proof}
+We show that the set $\ideal{m}$ of nonunits of $R$ is an ideal 
+(hence maximal). It is clear that if $x \in R$ is not a unit, then
+$rx$ is not a unit for any $r \in R$.
 
+Suppose $x, y \in \ideal{m}$ are non-units, then assume \wlog that 
+$x/y \in R$ (or else $y/x \in R$). Then $1 + x/y \in R$. But
+\[
+1 + x/y = (x + y)/y.
+\]
+If $x + y$ is a unit, then $y$ is a unit, contradicting the 
+assumption that $y \in \ideal{m}$. It follows that $\ideal{m}$
+is an ideal. Maximality follows from the fact that any ideal
+properly containing $\ideal{m}$ must in fact be unital.
+\end{proof}
