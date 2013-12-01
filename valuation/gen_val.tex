@@ -247,6 +247,16 @@ R/\ideal{m'}$ then $x$ is given by some $y \in R'$ such that $y
 \notin R$. Then $y^{-1} \in R$ and $x^{-1} = \phi(y)^{-1} = 
 \phi(y^{-1}) \in R/\ideal{m'}$ as desired.
 
-\pfbullet{(4)}: 
+\pfbullet{(4)}: We show that $S$ is a valuation ring of $K$. That
+is $S \cup S^{-1} = K$, where $S^{-1} = \{x^{-1} | x \in S^*\}$. 
+Suppose $x \notin S$. There are two cases: either $x \in R'$ or 
+not. Assume so. Then $x$ is a unit of $R$, so $x \notin 
+\ideal{m'}$. Then $\phi(x) \neq 0$; since $x \notin S$, as 
+$\phi(S)$ is a valuation ring of $R'/\ideal{m'}$ per assumption, 
+$\phi(x)^{-1} = \phi(x^{-1}) \in \phi(S)$. It follows that 
+$x^{-1} \in S$.
 
+Now assume $x \notin R'$. Then $x^{-1} \in R'$, and in particular
+$x^{-1} \in \ideal{m'}$. By (1), however, $\ideal{m'} \subset S$.
+It follows that $x^{-1} \in S$, and (4) is proven.
 \end{proof}
