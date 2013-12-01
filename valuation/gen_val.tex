@@ -1,5 +1,7 @@
 These notes cover basic theory of valuation.
 
+\section{General Valuation Theory}
+
 \begin{defn}
 Let $G$ be a multiplicative abelian group. We say that an 
 \emph{ordering} is defined in $G$ if we are given a 
@@ -16,7 +18,7 @@ It is easy to see that $1 < h$ if and only if $h \in P$. The
 following are clear consequences:
 
 \begin{prop}
-Let $G$ be a group with an ordering by $P$. Then:
+Let $G$ be a group as above with an ordering by $P$. Then:
 
 \begin{enumerate}
 \item For $g, h \in G$, either $g < h$, $g = h$, or $h < g$.
@@ -26,3 +28,61 @@ Let $G$ be a group with an ordering by $P$. Then:
 \item $g < h$ and $h < k$ implies that $g < k$.
 \end{enumerate}
 \end{prop}
+
+In fact, the above characteristics defines an ordering (though 
+this will not be used in the sequel). More precisely:
+
+\begin{prop}
+Let $P$ be any subset of $G$. Define $h < g$ if $gh^{-1} 
+\in P$. If ``$<$'' satisfies (1 - 3) of the above proposition, 
+then $P$ defines an ordering of $G$.
+\end{prop}
+\begin{proof}
+To show that $P$ is closed under multiplication, note that for
+$g, h \in P$, $1 < g < gh$, and by (3), $1 < gh$, and therefore,
+$gh \in P$. 
+
+The fact that $G = P \dU P^{-1} \dU \{1\}$ is a consequence of
+(1): fix $g \in G$, $g < 1, g = 1$ or $g > 1$ suggest precisely
+that $P$ is disjoint from $P^{-1}$ and $\{1\}$, and $g \in P$,
+$g = 1$ or $g \in P^{-1}$.
+\end{proof}
+
+\begin{rmk}
+Suppose $G$ is any group with an ordering, then for any $g \in G$
+such that $g^n = 1$ for any $n \in \Z$, then $g = 1$. Indeed, 
+assume \wlog that $g \in P$ to obtain a contradiction. Then $g^n 
+\in P$ for any $n$; this contradicts the fact that $1 \notin P$.
+
+In particular, \emph{the map $g \mapsto g^n$ is injective}.
+\end{rmk}
+
+\begin{defn}
+Let $K$ be a field. A \emph{valuation} of $K$ is an association 
+$v: K \to G \dU \{-\infty\}$ for some $G$ with an ordering (by 
+$P$, say) and an extra symbol $-\infty$
+\begin{enumerate}
+\item[\textbf{V1.}] $v(x) = -\infty$ if and only if $x = 0 \in K$,
+
+\item[\textbf{V2.}] $v(xy) = v(x)v(y)$ for all $x, y \in K$,
+
+\item[\textbf{V3.}] $v(x + y) \leq \max(v(x), v(y))$
+\end{enumerate}
+\end{defn}
+
+\begin{rmk}
+It is easy to see that a valuation $v: K \to G\dU \{-\infty\}$
+defines group homomorphism from $K^*$ to $G$. Noting \textbf{V2.},
+we need only to verify that $v(1) = 1$. To see this, note that 
+$v(1) = v(1 \cdot 1) = v(1)v(1)$. It follows that $v(1) = 
+v(1)^{-1}v(1) = 1$ as desired. It follows, in particular, that
+$v(x^{-1}) = v(x)^{-1}$.
+\end{rmk}
+
+We say that a valuation $v$ is \emph{trivial} if $v(K^*) = 1$.
+
+\begin{prop}
+Let $K$ be a field, and $R$ is a subset for which $x \in R$ or
+$x^{-1} \in R$. Then $R$ is a local ring.
+\end{prop}
+
