@@ -1,0 +1,37 @@
+\section{Extensions of Valuations}
+
+We begin the discussion by talking about extending ring and field 
+morphisms, which will be lay the ground work for establishing the 
+following result:
+
+\begin{thm}\label{thm_ext_val}
+Let $K$ be a subfield of a field $L$. Then a valuation on $K$ has 
+an extension to a valuation on $L$.
+\end{thm}
+
+The proof of this theorem will be given at the end of the section.
+Let us begin with the following observation:
+
+\begin{prop}[\cite{LangAlg} V\S2.8]
+Let $k$ be a field, $E$ an algebraic extension of $k$, and 
+$\sigma: k \to L$ a field homomorphism from $k$ to an 
+algebraically closed field $L$. Then there exists an extension of 
+$\sigma$ to a homomorphism $\sigma': E \to L$.
+\end{prop}
+
+\begin{proof}
+In the case where $E$ is a finite extension, then this is clear.
+For an arbitrary extension, let $\Class{F}$ denote the collection
+of all pairs $(F, \tau)$ where $F$ is a subfield of $E$ and 
+$\tau: F \to L$ is a morphism for which $\tau|_k = \sigma$. 
+Order $\Class{F}$ by $(F, \tau) \leq (F', \tau')$ if $F$ is a 
+subfield of $F'$ and $\tau'|_F = \tau$.
+
+Apply Zorn's lemma, and let $(K, \lambda)$ be a maximal element
+in $\Class{F}$. We show that $\lambda$ is the desired extension to 
+$E$. In particular and sufficiently, $K = E$. This follows 
+trivially, since otherwise, fix $x \in E$, $x \notin K$, and 
+notice that $\lambda$ extends to $\lambda': K(x) \to L$, 
+contradicting the maximality of $(K, \lambda)$.
+\end{proof}
+
