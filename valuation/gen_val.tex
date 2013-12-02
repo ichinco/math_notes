@@ -348,10 +348,29 @@ obtain a relation of strictly lower degree, a contradiction.
 Hence, either $x \in R$ or $x^{-1} \in R$ as desired.
 \end{proof}
 
-With similar strategies, we can prove the following:
+As a consequence of the above, we have the following result, 
+which relates integral closures to valuation rings.
 
 \begin{thm}\label{thm_int_cls_val_rng}
 Let $K$ be a field, $A \subset K$ a subring. Let $B$ be the 
 integral closure of $A$ in $K$. Then $B$ is the intersection of
 all valuation rings of $K$.
 \end{thm}
+\begin{proof}
+Let $B'$ be the intersection of all valuation rings containing 
+$A$. The intersection is not trivial, since Thm. 
+\ref{mats_val_rng_dom}. It is clear that $A \subset B$. Hence, by
+Prop. \ref{thm_mats_10_1}, $B \subset B'$. 
+
+To prove $B' \subset B$, it suffices to show that for any $x 
+\notin B$, there exists some valuation ring that contains $A$, 
+but not $x$. 
+
+Fix such an element $x$, and consider $y = x^{-1}$. Notice that
+$1 \notin yA[y]$, for otherwise $x$ would be integral over $A$,
+contradicting our assumption about $x$. Consider any prime ideal
+$\ideal{p}$ of $A[y]$ containing $yA[y]$, and by Thm. 
+\ref{mats_val_rng_dom}, there exists some valuation ring $(R, 
+\ideal{m})$ whose maximal ideal $\ideal{m}$ contains $\ideal{p}$, 
+and thereby $y$. Thus $x = y^{-1} \notin R$ (and $A \subset R$).
+\end{proof}
