@@ -309,3 +309,43 @@ $A$ is a subring of $R$ and $\ideal{p} = \ideal{m} \cap A$.
 In particular, every local subring of $K$ is dominated by a 
 valuation ring.
 \end{thm}
+\begin{proof}
+Replace $A$ by $A_{\ideal{p}}$, we may assume \WLOG that $A$ is 
+local with maximal ideal $\ideal{p}$. Let $\Class{R}$ denote the
+set of all subrings $B$ of $K$ containing $A$ for which 
+$\ideal{p}B \neq B$. Use Zorn's Lemma to conclude that 
+$\Class{R}$ has a maximal element: $R$. We claim that $R$ is the 
+desired valuation ring.
+
+Notice that $\ideal{p}R$ is not unital, so we may fix a maximal 
+ideal $\ideal{m}$ of $R$ such that $\ideal{p}R \subset \ideal{m}$.  
+As $R \subseteq R_{\ideal{m}}$, and $R_{\ideal{m}} \in \Class{F}$,
+$R = R_{\ideal{m}}$, and $R$ is local.
+
+To see that $R$ is a valuation ring of $K$, we show that $x 
+\notin R$ implies that $x^{-1} \in R$. Assume for a contradiction
+that $x$ and $x^{-1}$ are not elements of $R$. In this case,
+$R \subsetneq R[x]$, and therefore, $1 \in pR[x]$. That is,
+\begin{equation}\label{eq_thm_10_1_a}
+1 = a_0 + a_1x^1 + \cdots + a_nx^n
+\end{equation}
+where $a_i \in \ideal{p}R$ for $i = 0,\dots, n$, which we may 
+assume is of minimal degree. Similarly, we obtain a relation for 
+$x^{-1}$:
+\begin{equation}\label{eq_thm_10_1_b}
+1 = b_0 + b_1x^{-1} + \cdots + a_mx^{-m}
+\end{equation}
+with $b_i \in \ideal{p}R$ for $i = 0,\dots, m$.
+
+Since $R$ is local, $a_0 - 1$ and $b_0 - 1$ are units. Dividing
+by each in their respective equations, we may assume that $a_0 = 
+b_0 = 0$.
+
+Assume \WLOG that $m \leq n$. Multiplying Eq. \ref{eq_thm_10_1_b} 
+by $x^m$ and subtracting the result from \ref{eq_thm_10_1_a}, we 
+obtain a relation of strictly lower degree, a contradiction.
+
+Hence, either $x \in R$ or $x^{-1} \in R$ as desired.
+\end{proof}
+
+With similar strategies, we can prove the following:
