@@ -45,3 +45,37 @@ field $L$. Then $\phi$ has an extension to a homomorphism of $B$
 into $L$.
 \end{prop}
 
+\begin{proof}
+We first reduce the case to local rings with the following lemma.
+
+\begin{lem}
+Let $\phi : A \to L$ be a ring morphism with $L$ an algebraically
+closed field, and fix $\ideal{p}$ any prime ideal containing the
+kernel. Then there exists an extension of $\phi$ to the 
+$A_{\ideal{p}}$.
+\end{lem}
+\begin{proof}[Proof of Lemma.]
+It suffices to show that the image of $S = A - \ideal{p}$ consist
+entirely of invertible elements. This follows from the fact that
+$\ker \phi$ is contained in $\ideal{p}$. The existence of the
+extension follows from the universal property of $A_{\ideal{p}}$.
+\end{proof}
+
+Now, let $\ideal{p} = \ker \phi$. By replacing $A$ by $A_{\ideal{p}}$
+and $B$ by $B_{\ideal{p}B}$, we may assume that $A$ and $B$ are
+local, and the maximal ideal of $A$ is precisely the kernel of $\phi$,
+and factors through the residue field $A/\ideal{p}$.
+
+Furthermore, since $B$ is integral over $A$, there exists a maximal
+ideal $\ideal{m}$ such that $\ideal{p} = \ideal{m}$ (see 
+\cite{MatsCA}, \S9 Lem. 2), and that $A/\ideal{p} \to B/\ideal{m}$ is
+a finite field extension. The proposition now follows from the
+commutativity of the diagram:
+\begin{tikzcd}
+B \arrow{r} \arrow{d} 
+& B/\ideal{m} \arrow{d} \arrow[dotted]{rd} \\
+A \arrow{r} 
+& A/\ideal{p} \arrow{r}
+& L
+\end{tikzcd}
+\end{proof}
