@@ -8,12 +8,11 @@
 \usepackage{stmaryrd}
 
 %Diagram package
-\usepackage[dvips,midshaft,nohug,silent,heads=LaTeX]{diagrams}
-
 \usepackage{tikz}
 \usetikzlibrary{matrix}
 \usetikzlibrary{arrows}
 \usetikzlibrary{decorations.pathmorphing}
+\usepackage{tikz-cd}
 
 \newcounter{items}[section]
 \setcounter{items}{1}
@@ -34,6 +33,7 @@
 
 
 \begin{document}
+\pgfversion
 \input{abstract}
 \maketitle
 \input{macros}

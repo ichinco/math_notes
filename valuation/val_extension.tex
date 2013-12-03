@@ -35,6 +35,22 @@ notice that $\lambda$ extends to $\lambda': K(x) \to L$,
 contradicting the maximality of $(K, \lambda)$.
 \end{proof}
 
+In particular:
+
+\begin{cor}
+A field homomorphism $E \to L$ where $L$ is algebraically closed
+can be extended to the algebraic closure of $E$.
+\end{cor}
+
+In fact, we have something stronger.
+
+\begin{prop}
+Let $E$ be a subfield of $F$, and $L$ is any algebraically closed
+field with transcendence degree of $L$ over $E$ higher than the 
+transcendence degree of $F$ over $E$. Then any $\phi: E \to L$ 
+can be extended to $F \to L$.
+\end{prop}
+
 The following two propositions can be seen as the ring-theoretic
 counterparts of the preceding proposition:
 
@@ -48,7 +64,7 @@ into $L$.
 \begin{proof}
 We first reduce the case to local rings with the following lemma.
 
-\begin{lem}
+\begin{lem}\label{lem_lang_3_1}
 Let $\phi : A \to L$ be a ring morphism with $L$ an algebraically
 closed field, and fix $\ideal{p}$ any prime ideal containing the
 kernel. Then there exists an extension of $\phi$ to the 
@@ -86,10 +102,36 @@ The following begin to suggest a valuative behavior, and inspire
 our discussion of places.
 
 \begin{prop}\label{thm_lang_3_2}
-Let $A$ be a subring of a field $K$, and let $x \in K$ be a 
-nonzero element. Then any morphism $\phi: A \to L$ where $L$ is an 
-algebraically closed field emits an extension to a homomorphism 
-$A[x] \to L$ or an extension $A[x^{-1}] \to L$. (In other words, 
-if there does not exist an extension $A[x] \to L$ then, there surely
-must exist an extension $A[x^{-1}] \to L$.)
+Let $A$ be a subring of a field $K$ which is in turn a subfield 
+of an algebraically closed field $L$, and let $x \in K$ be a 
+nonzero element. Then any morphism $\phi: A \to L$ emits an 
+extension to a homomorphism $A[x] \to L$ or an extension 
+$A[x^{-1}] \to L$. (In other words, if there does not exist an 
+extension $A[x] \to L$ then, there surely must exist an extension 
+$A[x^{-1}] \to L$.)
 \end{prop}
+\begin{proof}
+By Lemma \ref{lem_lang_3_1}, we may assume that $A$ is local, and
+that the maximal $\ideal{m}$ is the kernel of $\phi: A \to L$.
+There are two cases: $\ideal{m}A[x^{-1}] = A[x^{-1}]$ or 
+$\ideal{m}A[x^{-1}] \neq A[x^{-1}]$, and we will see that the former
+leads to an extension $A[x] \to L$ and the latter an extension of
+$A[x^{-1}] \to L$.
+
+\pfitem{Case $\ideal{m}A[x^{-1}] = A[x^{-1}]$}: we can write
+\[
+1 = a_0 + a_1x^{-1} + \cdots + a_nx^{n}
+\]
+with $a_i \in \ideal{m}, a_n \neq 0$. Dividing by $1 - a_0$, we 
+may assume that $a_0 = 0$. Multiplying by $x^n$, we see that $x$ 
+is integral over $A$. The extension $A[x] \to L$ follows from 
+Prop. \label{prop_lang_3_1}.
+
+\pfitem{Case $\ideal{m}A[x^{-1}] \neq A[x^{-1}]$}: we may assume 
+that $\ideal{m}A[x^{-1}] \subset \ideal{m'}$ for some maximal 
+ideal $\ideal{m'}$ of $A[x^{-1}]$. Furthermore, since $1 \notin 
+\ideal{m'}$ and $\ideal{m} \subset A \cap \ideal{m'}$, $A \cap 
+\ideal{m'} = \ideal{m}$ by the maximality of $\ideal{m}$.
+
+Furthermore, $\phi$ factors through $A/\ideal{m}$.
+\end{proof}
