@@ -71,6 +71,7 @@ ideal $\ideal{m}$ such that $\ideal{p} = \ideal{m}$ (see
 \cite{MatsCA}, \S9 Lem. 2), and that $A/\ideal{p} \to B/\ideal{m}$ is
 a finite field extension. The proposition now follows from the
 commutativity of the diagram:
+\[
 \begin{tikzcd}
 B \arrow{r} \arrow{d} 
 & B/\ideal{m} \arrow{d} \arrow[dotted]{rd} \\
@@ -78,4 +79,17 @@ A \arrow{r}
 & A/\ideal{p} \arrow{r}
 & L
 \end{tikzcd}
+\]
 \end{proof}
+
+The following begin to suggest a valuative behavior, and inspire 
+our discussion of places.
+
+\begin{prop}\label{thm_lang_3_2}
+Let $A$ be a subring of a field $K$, and let $x \in K$ be a 
+nonzero element. Then any morphism $\phi: A \to L$ where $L$ is an 
+algebraically closed field emits an extension to a homomorphism 
+$A[x] \to L$ or an extension $A[x^{-1}] \to L$. (In other words, 
+if there does not exist an extension $A[x] \to L$ then, there surely
+must exist an extension $A[x^{-1}] \to L$.)
+\end{prop}
