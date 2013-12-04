@@ -1,7 +1,7 @@
 \section{Extensions of Valuations}
 
 We begin the discussion by talking about extending ring and field 
-morphisms, which will be lay the ground work for establishing the 
+morphisms, which will lay the ground work for establishing the 
 following result:
 
 \begin{thm}\label{thm_ext_val}
@@ -99,10 +99,10 @@ a finite field extension. The proposition now follows from the
 commutativity of the diagram:
 \[
 \begin{tikzcd}
-B \arrow{r} \arrow{d} 
-& B/\ideal{m} \arrow{d} \arrow[dotted]{rd} \\
-A \arrow{r} 
-& A/\ideal{p} \arrow{r}
+B \arrow{r}
+& B/\ideal{m} \arrow[dotted]{rd} \\
+A \arrow{r}\arrow{u}
+& A/\ideal{p} \arrow{r}\arrow{u}
 & L
 \end{tikzcd}
 \]
@@ -117,7 +117,7 @@ of an algebraically closed field $L$, and let $x \in K$ be a
 nonzero element. Then any morphism $\phi: A \to L$ emits an 
 extension to a homomorphism $A[x] \to L$ or an extension 
 $A[x^{-1}] \to L$. (In other words, if there does not exist an 
-extension $A[x] \to L$ then, there surely must exist an extension 
+extension $A[x] \to L$ then, there must exist an extension 
 $A[x^{-1}] \to L$.)
 \end{prop}
 \begin{proof}
@@ -135,13 +135,46 @@ $A[x^{-1}] \to L$.
 with $a_i \in \ideal{m}, a_n \neq 0$. Dividing by $1 - a_0$, we 
 may assume that $a_0 = 0$. Multiplying by $x^n$, we see that $x$ 
 is integral over $A$. The extension $A[x] \to L$ follows from 
-Prop. \label{prop_lang_3_1}.
+Prop. \ref{prop_lang_3_1}.
 
-\pfitem{Case $\ideal{m}A[x^{-1}] \neq A[x^{-1}]$}: we may assume 
-that $\ideal{m}A[x^{-1}] \subset \ideal{m'}$ for some maximal 
-ideal $\ideal{m'}$ of $A[x^{-1}]$. Furthermore, since $1 \notin 
-\ideal{m'}$ and $\ideal{m} \subset A \cap \ideal{m'}$, $A \cap 
-\ideal{m'} = \ideal{m}$ by the maximality of $\ideal{m}$.
+\pfitem{Case $\ideal{m}A[x^{-1}] \neq A[x^{-1}]$}: Write $y = x$ 
+and set $B = A[y]$. 
 
-Furthermore, $\phi$ factors through $A/\ideal{m}$.
+It is clear that $\phi$ factors through $A/\ideal{m}$. Consider 
+the surjective map $\psi: B \to A/\ideal{m}[y]$ given by $y
+\mapsto y$, whose kernel contains $\ideal{m}B$. Since $\ideal{m}B 
+\neq B$, $\ker \psi$ is a prime ideal.
+
+Choose any maximal ideal $\ideal{n}$ containing $\ker \psi$ (in 
+particular, $\ideal{n}$ contains $\ideal{m}B$). It is important
+to note that $\ideal{n} \cap A = \ideal{m}$ since it is an ideal 
+in $A$ containing $\ideal{m}$. Therefore, there exists an 
+canonical inclusion of $A/\ideal{m} \to B/\ideal{n}$.
+
+For the extension, we are now reduced to finding a map indicated 
+by the dotted arrow in the following diagram:
+\[
+\begin{tikzcd}
+B \arrow{r} 
+& B/\ideal{n}\arrow[dotted]{rd} \\
+A \arrow{r} \arrow{u}
+& A/\ideal{p} \arrow{r}\arrow{u}
+& L.
+\end{tikzcd}
+\]
+To finish, we show $A/\ideal{m} \to B/\ideal{n}$ is algebraic, and
+thus the proposition would follow from Prop. \ref{prop_lang_2_8}.
+There are two cases to consider: $y$ is algebraic over $A$, or
+$y$ is transcendental over $A$.
+
+The case $y$ is algebraic over $A$ would imply that $B/\ideal{n}$
+is algebraic over $A/\ideal{m}$.
+
+If $y$ is transcendental over $A$, we still have the following
+surjection:
+\[
+A/\ideal{m}[y] \to B/\ideal{n}
+\]
+the kernel must be a monic polynomial. Thus, $B/\ideal{n}$ is 
+algebraic over $A$, as desired.
 \end{proof}
