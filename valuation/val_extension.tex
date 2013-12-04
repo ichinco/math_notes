@@ -12,7 +12,7 @@ an extension to a valuation on $L$.
 The proof of this theorem will be given at the end of the section.
 Let us begin with the following observation:
 
-\begin{prop}[\cite{LangAlg} V\S2.8]
+\begin{prop}[\cite{LangAlg} V\S2.8]\label{prop_lang_2_8}
 Let $k$ be a field, $E$ an algebraic extension of $k$, and 
 $\sigma: k \to L$ a field homomorphism from $k$ to an 
 algebraically closed field $L$. Then there exists an extension of 
@@ -46,10 +46,20 @@ In fact, we have something stronger.
 
 \begin{prop}
 Let $E$ be a subfield of $F$, and $L$ is any algebraically closed
-field with transcendence degree of $L$ over $E$ higher than the 
-transcendence degree of $F$ over $E$. Then any $\phi: E \to L$ 
-can be extended to $F \to L$.
+field with transcendence degree of $L$ over $E$ at least as large 
+as the transcendence degree of $F$ over $E$. Then any $\phi: E \to 
+L$ can be extended to $F \to L$.
 \end{prop}
+\begin{proof}
+Factor $E \to F$ into an algebraic extension followed by a 
+transcendental extension. By replacing $E$ by its algebraic 
+closure in $F$ via Prop. \ref{prop_lang_2_8}, we may assume that 
+$E \to F$ is transcendental.
+
+At this point, any injective maps on the transcendental generators 
+of $F$ over $E$ to the transcendental generators of $L$ over $E$
+will induce an extension of $\phi$ to a map $E \to L$.
+\end{proof}
 
 The following two propositions can be seen as the ring-theoretic
 counterparts of the preceding proposition:
