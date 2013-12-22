@@ -45,15 +45,33 @@ is exact.
 \begin{proof}
 We prove the statement for the snake tail.
 
-Let $A'' = \cok \alpha, B'' = \cok \beta,$ and $C'' = \cok 
-\gamma$; let $\alpha': A' \to A'', \beta': B' \to B'',$ and
-$\gamma': C' \to C''$ be the canonical projections. 
-
+To simplify notation, let $A'' = \cok \alpha, B'' = \cok \beta,$ 
+and $C'' = \cok \gamma$; let $\alpha': A' \to A'', \beta': B' \to 
+B'',$ and $\gamma': C' \to C''$ be the canonical projections. 
 By the universal property of cokernels, there exists unique
 maps
 \[
 A'' \stackrel{f''}{\to} B'' \stackrel{g''}{\to} C''.
 \]
+For the ease of the reader, we have the following diagram as setup
+for the following arguments:
+\[
+\begin{tikzcd}
+A \arrow{r}{f} \arrow{d}{\alpha} &
+B \arrow{r}{g} \arrow{d}{\beta} &
+C \arrow{r} \arrow{d}{\gamma} &
+0 \\
+A' \arrow{r}{f'} \arrow{d}{\alpha'} &
+B' \arrow{r}{g'} \arrow{d}{\beta'} &
+C' \arrow{r} \arrow{d}{\gamma'} &
+0 \\
+A'' \arrow{r}{f''} &
+B'' \arrow{r}{g''} &
+C''
+\end{tikzcd}
+\]
+Here, only the top two rows are exact.
+
 We proceed as follows:
 
 \pfitem{$g''$ is surjective}: There are two ways of doing this.
@@ -104,6 +122,25 @@ desired.
 To complete this step, notice that the push-out of a surjection
 is a surjection (Prop. \ref{prop:pushout_epi}).
 
+Therefore, we have the following diagram:
+\[
+\begin{tikzcd}
+A \arrow{r}{f} \arrow{d}{\alpha} &
+B \arrow{r}{g} \arrow{d}{\beta} &
+C \arrow{r} \arrow{d}{\gamma} &
+0 \\
+A' \arrow{r}{f'} \arrow{d}{\alpha'} &
+B' \arrow{r}{g'} \arrow{d}{\beta'} &
+C' \arrow{r} \arrow{d}{\gamma'} &
+0 \\
+A'' \arrow{r}{f''} &
+B'' \arrow{r}{g''} &
+C'' \arrow{r} &
+0,
+\end{tikzcd}
+\]
+where the top two rows are exact.
+
 \pfitem{Sequence is exact at $B''$}: Once again, we show this
 using elements firsts, before proving the statement on a 
 categorical level. 
@@ -129,10 +166,25 @@ We claim that $\alpha'(a')$ maps to $b''$. Indeed,
 \begin{align*}
 f'' \alpha'(a') &= \beta' f'(a') \\
                 &= \beta'(b' - \beta(b)) \\
-                &= \beta'(b') - 0
+                &= \beta'(b') - 0 \\
                 &= b'',
 \end{align*}
 and this step is established (elementarily).
 
-\pfitem{Sequence is exact at $B''$ (categorical)}:
+\pfitem{Sequence is exact at $B''$ (categorical)}: The trick here 
+is to show that $C''$ is the cokernel of $A'' \to B''$ using the
+fact that $C''$ is the push-out established in the previous point.
+To do so, fix $D \in \Cat{A}$, and suppose that there exists a 
+map $h: B'' \to D$ such that $h f'' = 0$. We define a map from 
+$\delta: C' \to D$ such that $\delta g' = h \beta'$.
+
+Notice that the map $A' \to D$ defined by $h \beta' f'$ is 
+$0$, since this map is equal to $h f'' \alpha'$. Since $g': B' 
+\to C'$ is the cokernel of $f'$, there exists a map $\delta: C'
+\to D$ such that $\delta g' = h \beta'$.
+
+Since $C''$ is the push-out, there exists a unique map $\pi: C''
+\to D$ such that $\pi \gamma' g' = \pi g'' \beta' = h \beta'$.
+Since $\beta'$ is an epi, $\pi g'' = h$, and $B'' \to C''$ is the 
+cokernel as desired.
 \end{proof}
