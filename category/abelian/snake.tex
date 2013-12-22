@@ -1,0 +1,44 @@
+\section{Abelian Categories}
+
+\begin{prop}[Snake Head/Tail]
+Let $A, B, C, A', B', C'$ be objects of an abelian category 
+$\Cat{A}$ which fit into the following diagram:
+\[
+\begin{tikzcd}
+A \arrow{r}{f} \arrow{d}{\alpha} &
+B \arrow{r}{g} \arrow{d}{\beta} &
+C \arrow{r} \arrow{d}{\gamma} &
+0 \\
+A' \arrow{r}{f'} &
+B' \arrow{r}{g'} &
+C' \arrow{r} &
+0
+\end{tikzcd}
+\]
+such that the rows are exact. Then, the snake tail:
+\[
+\cok \alpha \to \cok \beta \to \cok \gamma \to 0
+\] 
+is exact.
+
+Dually, if
+\[
+\begin{tikzcd}
+0 \arrow{r}&
+A \arrow{r}{f} \arrow{d}{\alpha} &
+B \arrow{r}{g} \arrow{d}{\beta} &
+C \arrow{d}{\gamma} \\
+0 \arrow{r}&
+A' \arrow{r}{f'} &
+B' \arrow{r}{g'} &
+C' 
+\end{tikzcd}
+\]
+is commutative, where the rows are exact, then the snake
+head
+\[
+0 \to \ker \alpha \to \ker \beta \to \ker \gamma
+\]
+is exact.
+\end{prop}
+
