@@ -20,10 +20,11 @@ projective, etc) unless explicitly stated.
 
 \section{Finite morphisms}
 
-Fix $f: X \to Y$ to be a morphism of schemes.
+For the following definitions, let $f: X \to Y$ be a morphism of 
+schemes.
 
 \begin{defn}
-The morphism $f$ is \DEF{quasi-compact morphism}{quasi-compact}
+We say that $f$ is \DEF{quasi-compact morphism}{quasi-compact}
 if the inverse image of any affine open subset $V$ of $Y$ is
 quasi-compact. 
 
@@ -54,7 +55,24 @@ such a covering has a finite subcover. Let $\{U_{ij} : U_{ij} =
 = A_{ij}$ is a finitely generated algebra over $\O_Y(V_i) = B_i$.
 The ``only if'' direction is established.
 
-\pfitem{$\Leftarrow$} (\cite{Liu} 3.2.2):
+\pfitem{$\Leftarrow$} (\cite{Liu} 3.2.2): assume that $\{V_i :
+V_i = \Spec B_i\}$ is a cover of $Y$ satisfying the hypothesis
+of the proposition.
+
+To see that $f$ is quasi-compact, let $V$ be any affine open 
+subscheme of $Y$. Then $V \cap V_i$ is open in $V_i$ and has a
+covering by subschemes of the form $V_{ij} = \Spec (B_i)_{f_{ij}}$ 
+for some $f_{ij} \in B_i$. Since affine schemes are quasi-compact,
+it follows that the collection $\{V_{ij}\}$ is finite. 
+Furthermore, since $f^{-1}(V_i)$ can be covered by finitely many 
+affine open subschemes, then so can $f^{-1}(V_{ij})$. It follows 
+that $f^{-1}(V)$ can also be covered by finitely many affine open
+subschemes.
+
+Let $U \in f^{-1}(V_i)$ be an affine scheme. We want to show that
+$\O_X(U)$ is a finitely generated $\O_Y(V_i)$ algebra. Let 
+$\{U_{ij} : U_{ij} = \Spec A_{ij}\}$ be the finite affine cover of 
+$f^{-1}(V_i)$.
 \end{proof}
 
 \begin{defn}
