@@ -2,18 +2,72 @@
 Theorem}
 \label{sect_zariski}
 
+\renewcommand{\O}{\mathcal{O}}
+
 We cover a few key results necessary for the development of 
 \'etale theory. The flow of ideas will be very close to that of 
 Milne, but we fill in the necessary details in case the reader 
 doesn't wish to look elsewhere for the reference in question. 
 However, we will assume a passing familiarity with Chapter II of 
-\cite{Hart}, Chapters II of \cite{Liu}, or Chapter II of \cite{Mum}; the content therein 
-will be too much to cover in one text without cluttering the motif 
-of the text. For a general discussion about schemes and
+\cite{Hart}, Chapters II of \cite{Liu}, or Chapter II of 
+\cite{Mum}; the content therein will be too much to cover in one 
+text without cluttering the motif of the text. For a general 
+discussion about schemes, we recommend \cite{Hart} Chapter II
+and its exercises.
 
 We make no assumption about schemes (integrality, separatedness, 
 projective, etc) unless explicitly stated. 
 
+\section{Finite morphisms}
+
+Fix $f: X \to Y$ to be a morphism of schemes.
+
 \begin{defn}
-\DEF{hello}{Hello!}
+The morphism $f$ is \DEF{quasi-compact morphism}{quasi-compact}
+if the inverse image of any affine open subset $V$ of $Y$ is
+quasi-compact. 
+
+If in addition, for any open subset $U$ of $f^{-1}(V)$, the 
+canonical homomorphism $\O_Y(V) \to \O_X(U)$ makes $\O_X(U)$ into 
+a finitely generated $\O_Y(V)$-algebra, then we say that $f$ is 
+\DEF{finite-type morphism}{finite-type}.
 \end{defn}
+
+The reader may be careful to note that the above definition
+deviates from the one given in \cite{Hart} II.3, say. In fact,
+the two definitions are the same.
+
+\begin{prop}
+Let $f: X \to Y$ be a morphism of schemes. Then $f$ is a 
+finite-type scheme morphism if and only if there exists an open 
+cover $\{V_i : V_i = \Spec B_i \}$ of $Y$ such that for each $i$, 
+$f^{-1}(V_i)$ emits a finite cover $\{U_{ij} : U_{ij} = \Spec 
+A_{ij}\}$ by affine schemes such that $A_{ij}$ is a finitely 
+generated $B_i$-algebra.
+\end{prop}
+\begin{proof}
+\pfitem{$\Rightarrow$}: Fix any covering of $\{V_i : V_i = \Spec 
+B_i\}$, and note that $f^{-1}(B_i)$ emits a covering by affine
+subschemes. Since $f^{-1}(B_i)$ is quasi-compact, it follows that
+such a covering has a finite subcover. Let $\{U_{ij} : U_{ij} = 
+\Spec A_{ij}\}$ be such a finite subcover. Note that $\O_X(U_{ij}) 
+= A_{ij}$ is a finitely generated algebra over $\O_Y(V_i) = B_i$.
+The ``only if'' direction is established.
+
+\pfitem{$\Leftarrow$} (\cite{Liu} 3.2.2):
+\end{proof}
+
+\begin{defn}
+We say that $f$ is \DEF{affine morphism}{affine} if for every 
+affine open subset $U$, $f^{-1}(U)$ is also affine. 
+\end{defn}
+
+One example of a 
+
+\section{Flat morphisms}
+
+Some text.
+
+\section{\'Etale Morphism}
+
+Yet some more text.
