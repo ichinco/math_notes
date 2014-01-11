@@ -1,4 +1,4 @@
-\documentclass{amsart}
+\documentclass[11pt]{book}
 
 \usepackage{amsthm}
 \usepackage{amsmath}
@@ -31,16 +31,21 @@
 \newtheorem{rmk}[equation]{Remark}
 \newtheorem{ex}[equation]{Example}
 
+\input{../macros}
+\input{../book_macros}
 
 \begin{document}
-\pgfversion
-\input{abstract}
+\title{\'Etale Cohomology}
+
 \maketitle
-\input{../macros}
 
-\input{gen_val}
+\tableofcontents
+\addtocontents{toc}{~\hfill\textbf{Page}\par}
 
-\input{val_extension}
+\input{preface}
 
+\input{zariski}
+
+\input{index}
 \input{biblio}
 \end{document}
