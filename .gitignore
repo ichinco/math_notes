@@ -1,5 +1,12 @@
 .*.sw*
 
 *.pdf
+*.out
+*.toc
 *.aux
 *.log
+*.ilg
+*.idx
+*.ind
+*.dvi
+*.ps
