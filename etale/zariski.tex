@@ -20,17 +20,17 @@ projective, etc) unless explicitly stated.
 
 \section{Finite morphisms}
 
-For the following definitions, let $f: X \to Y$ be a morphism of 
+For the following definitions, let $\phi: X \to Y$ be a morphism of 
 schemes.
 
 \begin{defn}
-We say that $f$ is \DEF{quasi-compact morphism}{quasi-compact}
+We say that $\phi$ is \DEF{quasi-compact morphism}{quasi-compact}
 if the inverse image of any affine open subset $V$ of $Y$ is
 quasi-compact. 
 
-If in addition, for any open subset $U$ of $f^{-1}(V)$, the 
+If in addition, for any open subset $U$ of $\phi^{-1}(V)$, the 
 canonical homomorphism $\O_Y(V) \to \O_X(U)$ makes $\O_X(U)$ into 
-a finitely generated $\O_Y(V)$-algebra, then we say that $f$ is 
+a finitely generated $\O_Y(V)$-algebra, then we say that $\phi$ is 
 \DEF{finite-type morphism}{finite-type}.
 \end{defn}
 
@@ -39,17 +39,17 @@ deviates from the one given in \cite{Hart} II.3, say. In fact,
 the two definitions are the same.
 
 \begin{prop}
-Let $f: X \to Y$ be a morphism of schemes. Then $f$ is a 
+Let $\phi: X \to Y$ be a morphism of schemes. Then $\phi$ is a 
 finite-type scheme morphism if and only if there exists an open 
 cover $\{V_i : V_i = \Spec B_i \}$ of $Y$ such that for each $i$, 
-$f^{-1}(V_i)$ emits a finite cover $\{U_{ij} : U_{ij} = \Spec 
+$\phi^{-1}(V_i)$ emits a finite cover $\{U_{ij} : U_{ij} = \Spec 
 A_{ij}\}$ by affine schemes such that $A_{ij}$ is a finitely 
 generated $B_i$-algebra.
 \end{prop}
 \begin{proof}
 \pfitem{$\Rightarrow$}: Fix any covering of $\{V_i : V_i = \Spec 
-B_i\}$, and note that $f^{-1}(B_i)$ emits a covering by affine
-subschemes. Since $f^{-1}(B_i)$ is quasi-compact, it follows that
+B_i\}$, and note that $\phi^{-1}(B_i)$ emits a covering by affine
+subschemes. Since $\phi^{-1}(B_i)$ is quasi-compact, it follows that
 such a covering has a finite subcover. Let $\{U_{ij} : U_{ij} = 
 \Spec A_{ij}\}$ be such a finite subcover. Note that $\O_X(U_{ij}) 
 = A_{ij}$ is a finitely generated algebra over $\O_Y(V_i) = B_i$.
@@ -59,25 +59,38 @@ The ``only if'' direction is established.
 V_i = \Spec B_i\}$ is a cover of $Y$ satisfying the hypothesis
 of the proposition.
 
-To see that $f$ is quasi-compact, let $V$ be any affine open 
+To see that $\phi$ is quasi-compact, let $V$ be any affine open 
 subscheme of $Y$. Then $V \cap V_i$ is open in $V_i$ and has a
-covering by subschemes of the form $V_{ij} = \Spec (B_i)_{f_{ij}}$ 
-for some $f_{ij} \in B_i$. Since affine schemes are quasi-compact,
-it follows that the collection $\{V_{ij}\}$ is finite. 
-Furthermore, since $f^{-1}(V_i)$ can be covered by finitely many 
-affine open subschemes, then so can $f^{-1}(V_{ij})$. It follows 
-that $f^{-1}(V)$ can also be covered by finitely many affine open
-subschemes.
+covering by principle open subset.\footnote{\DEF{principle open 
+subset}{Principle open subsets} of an affine scheme $\Spec B$ are 
+subset of the form $V = \Spec B_f$ for some $f \in B$} Since 
+affine schemes are quasi-compact, it follows that the collection 
+$\{V_{ij}\}$ is finite.
+
+Furthermore, if we let $\{U_{ik}\}$ be the finite affine cover of 
+$\phi^{-1}(V_i)$, since $V_{ij}$ is a principle open subset of 
+$V_i$, we see that $\phi^{-1}(V_{ij}) \cap U_{ik}$ is a subscheme 
+of $U_{ik}$ which is also principle open, and in particular, 
+affine.  It follows that $\phi^{-1}(V)$ can also be covered by 
+finitely many affine open subschemes. To conclude that 
+$\phi^{-1}(V)$ is quasi-compact, we note that finite union of 
+quasi-compact subset is quasi-compact.\footnote{The argument here 
+is entirely topological. Let $\DSt W = \cup_1^n W_i$, with $W_i$ 
+quasi-compact. Indeed, fix any (potentially infinite) cover 
+$\{W'_i\}$ of $W$. By intersecting elements of the cover with each 
+$W_i$, we have a refinement of the cover where only finitely many 
+elements in the cover intersect each quasi-compact piece.}
 
 Let $U \in f^{-1}(V_i)$ be an affine scheme. We want to show that
 $\O_X(U)$ is a finitely generated $\O_Y(V_i)$ algebra. Let 
 $\{U_{ij} : U_{ij} = \Spec A_{ij}\}$ be the finite affine cover of 
-$f^{-1}(V_i)$.
+$\phi^{-1}(V_i)$. Notice (1) that $U \cap U_{ij}$ can be covered by
+finitely many principle open sets 
 \end{proof}
 
 \begin{defn}
-We say that $f$ is \DEF{affine morphism}{affine} if for every 
-affine open subset $U$, $f^{-1}(U)$ is also affine. 
+We say that $\phi$ is \DEF{affine morphism}{affine} if for every 
+affine open subset $U$, $\phi^{-1}(U)$ is also affine. 
 \end{defn}
 
 One example of a 
