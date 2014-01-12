@@ -142,10 +142,44 @@ which holds for every $\ideal{p}$. It follows that $T = T''$ as
 desired, and $T$ is finitely generated as a $S$ algebra.
 \end{proof}
 
+\begin{prop}[\cite{Mum} II.7.1]
+\label{prop:fin_type_is_local_in_target}
+Let $\phi: X \to Y$ be a morphism. To prove that $\phi$ is of 
+finite type, it suffices to check the defining property for the 
+open affine sets $V_i \subset Y$ of a given covering $\{V_i\}$ of 
+$Y$.
+\end{prop}
+
+\begin{proof}
+\end{proof}
+
+\begin{rmk}
+The result in Prop \ref{prop:fin_type_is_local_in_target} shows
+that being finite type as a property of scheme morphism is local
+in the target. 
+
+More specifically, let $\property{P}$ denote some property of a 
+morphism between schemes. We say that $\property{P}$ is 
+\DEF{local in target}{local in the target} if $\property{P}$ is 
+true of $\phi : X \to Y$ if and only if there exists some affine 
+cover $\{V_i\}$ of $Y$ such that $\phi|_{\phi^{-1}(U_i)}: 
+\phi^{-1}(U_i) \to U_i$ for all $U_i$ in the cover.
+\end{rmk}
+
 \begin{defn}
 We say that $\phi$ is \DEF{affine morphism}{affine} if for every 
-affine open subset $U$, $\phi^{-1}(U)$ is also affine. 
+affine open subset $V$ of $Y$, $U = \phi^{-1}(V)$ is also affine.
+
+We say that $\phi$ is \DEF{finite morphism}{finite} if 
+$\O_X(U)$ is a finite $\O_Y(V)$-algebra. That is, $\O_X(U)$ is
+a finite $\O_Y(V)$ module.
 \end{defn}
+
+There is again some difference between the above definition of
+finite morphisms and the way finite is defined in \cite{Hart}
+II.3. Once again, the two definitions are the same, and we defer
+the proof of this particular result to later in the text.
+
 
 One example of a 
 
