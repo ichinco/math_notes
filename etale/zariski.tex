@@ -8,15 +8,38 @@ We cover a few key results necessary for the development of
 \'etale theory. The flow of ideas will be very close to that of 
 Milne, but we fill in the necessary details in case the reader 
 doesn't wish to look elsewhere for the reference in question. 
-However, we will assume a passing familiarity with Chapter II of 
+Nonetheless, we will assume a passing familiarity with Chapter II of 
 \cite{Hart}, Chapters II of \cite{Liu}, or Chapter II of 
-\cite{Mum}; the content therein will be too much to cover in one 
-text without cluttering the motif of the text. For a general 
-discussion about schemes, we recommend \cite{Hart} Chapter II
-and its exercises.
+\cite{Mum}; otherwise the necessary exposition of the subjects 
+will be too much to cover in one text without cluttering the motif 
+of the text. For a general discussion about schemes, we recommend 
+\cite{Hart} Chapter II and its exercises.
 
 We make no assumption about schemes (integrality, separatedness, 
 projective, etc) unless explicitly stated. 
+
+To summarize briefly the purpose of this chapter, we give a short 
+overview of the few important morphism types in algebraic 
+geometry: finite-type, finite, proper, flat, \'etale. The central 
+result(s) that relates many of these is Zariski's ``Main Theorem'' 
+which has as many disguises as there are mathematicians who read 
+it. We tackle three of its forms. To conclude this chapter, we 
+give an application of the ``Main Theorem'' to the structure 
+theorem of \'etale morphism.
+
+Central to this section are two main ideas: flatness, and 
+separable field extensions. Both topics are too central to this
+chapter to dispense, but too lengthy to discuss without cluttering
+the mental space of the reader. To have the best of both worlds, 
+these topics, unfortunately, are delegated to the chapter's 
+appendix, with many of the proofs curtailed into a 
+pseudo-exercises. No doubt, the answers are readily available on 
+the internet (free), or in one of the standard texts on this 
+subject (not so free). The avid reader who seeks a post-doctoral 
+position is highly encouraged to try for weeks on end to fill in 
+the gaps of many of the proofs without consulting too many 
+sources. After all, one of the ways to remember the work of others 
+is to do the work yourself (or write textbooks).
 
 \section{Finite morphisms}
 
@@ -226,10 +249,10 @@ Now to reap the power of being \emph{local on the base}:
 
 \begin{cor}[\cite{Liu} Prop. 2.4]
 \begin{enumerate}
-\item open and closed immersions are finite type morphisms
+\item open and closed immersions are finite type morphisms.
 
 \item composition of finite type morphism is a finite type 
-morphism
+morphism.
 
 \item finite type morphism are stable under base change.\footnote{
 A property $\property{P}$ of a morphism between schemes is said to 
@@ -244,6 +267,12 @@ $\property{S}$-schemes} if for all schemes $Z$ that satisfies
 $\property{S}$, $\phi : X \to Y$ satisfies $\property{P}$ implies 
 that $Z \times_Y X \to Z$ satisfies $\property{P}$.}
 
+\item if $X \to Y$ and $Z \to Y$ are both morphisms of finite
+type, then so is $X \times_Y Z \to Y$.
+
+\item if $\phi \comp \psi$ is of finite type, and $\phi$ is of
+finite type. If $\psi$ is quasi-compact, then $\psi$ is also
+of finite type.
 \end{enumerate}
 \end{cor}
 
