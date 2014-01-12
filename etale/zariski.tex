@@ -138,12 +138,16 @@ $T$, $\ideal{p} \cap T''$ is again prime. Furthermore, since
 each $s_i \in T'[s_j]$, there exists some $f_i \notin \ideal{p}$, 
 whence $T''_{\ideal{p}}$ is a localization of $T'[s_j]_{f_i}$. 
 But, $T_{f_i} = T''_{f_i}$. Hence $T_{\ideal{p}} = T''_{\ideal{p}}$,
-which holds for every $\ideal{p}$. It follows that $T = T''$ as
-desired, and $T$ is finitely generated as a $S$ algebra.
+which holds for every $\ideal{p} \in \Spec T$. Since 
+\[
+T = \bigcap_{\ideal{p} \in \Spec T} T_{\ideal{p}},
+\] 
+it follows that $T = T''$ as desired, and $T$ is finitely 
+generated as a $S$ algebra.
 \end{proof}
 
 \begin{prop}[\cite{Mum} II.7.1]
-\label{prop:fin_type_is_local_in_target}
+\label{prop:fin_type_is_local_on_base}
 Let $\phi: X \to Y$ be a morphism. To prove that $\phi$ is of 
 finite type, it suffices to check the defining property for the 
 open affine sets $V_i \subset Y$ of a given covering $\{V_i\}$ of 
@@ -154,16 +158,22 @@ $Y$.
 \end{proof}
 
 \begin{rmk}
-The result in Prop \ref{prop:fin_type_is_local_in_target} shows
+The result in Prop \ref{prop:fin_type_is_local_on_base} shows
 that being finite type as a property of scheme morphism is local
-in the target. 
+on the base. 
 
 More specifically, let $\property{P}$ denote some property of a 
 morphism between schemes. We say that $\property{P}$ is 
-\DEF{local in target}{local in the target} if $\property{P}$ is 
+\DEF{local on the base}{local on the base} if $\property{P}$ is 
 true of $\phi : X \to Y$ if and only if there exists some affine 
 cover $\{V_i\}$ of $Y$ such that $\phi|_{\phi^{-1}(U_i)}: 
-\phi^{-1}(U_i) \to U_i$ for all $U_i$ in the cover.
+\phi^{-1}(U_i) \to U_i$ for all $U_i$ in the cover (see \cite{Liu}
+Def. III.1.21). 
+
+Properties that are local on the base allow for one to reduce
+the proof to the case where the target is affine. This is often
+a tremendously powerful technique and will be used often in the
+subsequent results.
 \end{rmk}
 
 \begin{defn}
@@ -180,6 +190,16 @@ finite morphisms and the way finite is defined in \cite{Hart}
 II.3. Once again, the two definitions are the same, and we defer
 the proof of this particular result to later in the text.
 
+\begin{prop}[\cite{Mum} II.8.3]
+The property of a morphism being finite is local in the target.
+That is, to show that $\phi: X \to Y$ is finite, it suffices to
+show that there exists some affine cover $\{V_i\}$ of $Y$ for 
+which $U = \phi^{-1}(V')$ is affine for any affine subscheme $V'$ 
+of $V_i$ and that $\O_X(U)$ is a finite $\O_Y(V')$-algebra.
+\end{prop}
+\begin{proof}
+
+\end{proof}
 
 One example of a 
 
