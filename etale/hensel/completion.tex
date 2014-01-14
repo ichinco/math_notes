@@ -1,32 +1,40 @@
 \section{Filtrations and completions.}
 
 We begin the discussion with a topological excursion, as to lay
-the ground work for discussions regarding profinite groups in
-Appendix \ref{appendix:profinite}. Throughout, let $G$ be a
-topological group.\footnote{There are two equivalent ways of 
-understanding this notion. First --- the more classical way --- 
-$G$ is a group together with a topology on its underlying set in 
-which left/right multiplication with respect to any element $g 
-\in G$ and taking inverse are continuous are continuous functions 
-from $G$ to $G$. Second --- the more hipster way --- is to say 
-that $G$ is a group object in the category of topological spaces. 
-That is, there are maps of topological space
+the ground work for discussions regarding ``adic'' completion in 
+this section. This topic is developed from the view point of a
+topological group. In this case, the group happens to be a ring
+$R$
+
+profinite groups in Appendix 
+\ref{appendix:profinite}. Throughout, let $G$ be a topological 
+group.\footnote{There are two equivalent ways of understanding 
+this notion. First --- the more classical way --- $G$ is a group 
+together with a topology on its underlying set in which left/right 
+multiplication with respect to any element $g \in G$ and taking 
+inverse are continuous are continuous functions from $G$ to $G$. 
+Second --- the more hipster way --- is to say that $G$ is a group 
+object in the category of topological spaces. That is, there are 
+maps of topological space
 \[
-\mu: G \times G \to G\;\;\;\textrm{(composition) and   }
+\mu: G \times G \to G\;\;\;\textrm{(composition) and}\;\;\;\;
 \iota: G \to G\;\;\;\textrm{(inverse)}
 \]
-satisfying the axioms for composition and inverse.} In particular,
+satisfying the axioms for composition and inverse.} In particular, 
+since translates by elements of $g$ is a homeomorphism, the 
+neighborhoods of the identity $e$ uniquely define the topology on 
+$G$. 
+
+In particular,
 $G \times G \to G$ given by $(g, h) \mapsto g^{-1}h$ is 
 continuous, and the inverse image of the closed set $\{e\}$ is 
 precisely the diagonal. It follows that $G$ is Hausdorff.
-
-\begin{defn}
-
-\end{defn}
 
 \begin{thm}{Artin-Rees Lemma}\label{thm:artin_rees_lemma}
 Let $R$ be a Noetherian ring, $\ideal{a}$ an $R$-ideal, and $M$ a
 finitely generated $R$-module, and $F^*M$ a stable 
 $\ideal{a}$-filtration of $M$. If $M'$ is a submodule of $M$ then
 $(M' \cap F^nM)$ is a stable $\ideal{a}$-filtration of $M'$.
+
+
 \end{thm}
