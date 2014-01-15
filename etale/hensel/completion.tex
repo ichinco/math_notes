@@ -1,4 +1,4 @@
-\section{Filtrations, completions, and Artin-Rees.}
+\section{Completions, Filtrations, and Artin-Rees.}
 
 We begin the discussion with a topological excursion, as to lay 
 the ground work for discussions regarding ``adic'' completion in 
@@ -13,6 +13,8 @@ results here are taken from \cite{AM}, \cite{MatsCA} and
 the ``adic'' completion and related results can safely skip this
 section.
 
+\subsection{Topological Groups and Completion}
+
 Throughout, let $G$ be a topological group.\footnote{There are two 
 equivalent ways of understanding this notion. First --- the more 
 classical way --- $G$ is a group together with a topology on its 
@@ -26,7 +28,7 @@ topological spaces. That is, there are maps of topological space
 \iota: G \to G\;\;\;\textrm{(inverse)}
 \]
 satisfying the axioms for composition and inverse.} In particular, 
-since translates by elements of $g$ is a homeomorphism, the 
+since translates by elements of $g$ are homeomorphisms, the 
 neighborhoods of the identity $e$ uniquely define the topology on 
 $G$. Immediately, we have the following useful result:
 
@@ -128,14 +130,54 @@ Together, the composition, inverse, and $e$ satisfy the axioms of
 a group.
 \end{proof}
 
-\begin{rmk}
-Here, we will not show why the group completion of such a 
-topological group is a topological space. We delegate the task to 
-Appendix \ref{appendix:profinite}, in which the result is proved 
-in some terribly gruesome details. (We talk about profinite 
-topological spaces for an entire chapter!) We consider the reader 
-duly warned, and any subsequent interest is mostly the reader's.
-\end{rmk}
+We do not show why the group completion of such a topological 
+group is the limit object in the category of topological space in
+this section. We instead delegate this task to Appendix 
+\ref{appendix:profinite}, in which the result is proved in some 
+terribly gruesome details, couple with discussions of a number of
+topics that have more to do with category theory than the subject
+at hand. (We talk about profinite topological spaces for an entire 
+chapter!) We consider the reader duly warned.
+
+Nonetheless, we can give a short description of what the open sets
+are in this case. Fix any normal subgroup $H$ of $G$. Then, by 
+intersecting each open set in the system of neighborhoods 
+$\{G_\alpha\}$ of $e \in G$ by $H$, we have an system of 
+neighborhoods $\{G_\alpha \cap H\}$ of $e \in H$, from which we 
+may define $\Complete{H}$.
+
+\begin{prop}\label{prop:compl_of_normal_is_normal}
+Let $H$ be a normal subgroup of $G$. Then $\Complete{H}$ is a 
+normal subgroup of $\Complete{G}$.
+\end{prop}
+\begin{proof}
+Using the element-based description of $\Complete{H}$, we derive
+the proposition from the fact that each $H/(H \cap G_\alpha)$ (as
+a subgroup of $G/G_\alpha$) is normal.
+
+Indeed, $\Complete{H}$ consists of coherence sequences 
+$(x_\alpha)$ in $\Complete{G}$ where $x_\alpha$ is in the subgroup 
+$H/(H \cap G_\alpha)$ of $G/G_\alpha$. Fixing one such sequence, and
+conjugate by $(y_\alpha) \in \Complete{G}$. Then the resulting 
+sequence consists of the tupple of elements $y_\alpha x_\alpha 
+y_\alpha^{-1} \in H/H \cap G_\alpha$ by the normality of $H/H \cap 
+G_\alpha$. It follows that conjugating by $(y_\alpha)$ stabilizes
+$\Complete{H}$.
+\end{proof}
+
+Applying Prop. \ref{prop:compl_of_normal_is_normal} to each open
+normal subgroup in $\{G_\alpha\}$, we have a system of 
+neighborhoods $\{\Complete{G_\alpha}\}$ of $e \in \Complete{G}$.
+By Lemma \ref{lem:top_grp_neigh_props}, this defines the topology 
+on $\Complete{G}$, and makes $\Complete{G}$ into a topological 
+group. The fact that the group operations are continuous with 
+respect to this topology is by more or less by construction. That 
+is, a set is open in $\Complete{G}$ if and only if it is a 
+translate of a neighborhood of $e$. Perhaps the only statement
+with a modicum of content in verifying is that the inverse 
+operation on $\Complete{G}$ is continuous, but that is more tedius 
+than enlightening, and we leave its verification squarely on the
+shoulder of the skeptics.
 
 Notice that there exists a canonical map from $G$ into 
 $\Complete{G}$. Using the description of $\Complete{G}$ given before
@@ -146,18 +188,16 @@ the injection $i: G \to \Complete{G}$ is given by
 i(g) = (\pi_\alpha(g)).
 \]
 Since $\pi_\alpha(gh) = \pi_\alpha(g)\pi_\alpha(h)$, we see that
-$i$ is a group homomorphism. In fact, per the preceding remark, 
-$i$ is a map of topological groups.
+$i$ is a group homomorphism. In fact, per the preceding discussion,
+$i$ is a map of topological groups. (See Prop.
+\ref{prop:compl_is_morph_of_top_grps}.)
 
 \begin{caution}
 The reader may be tempted to say that $i$ (which could stand for 
 ``injection'') is actually a monomorphism. This is \emph{NOT} true 
 in general. Suppose $G$ is not Hausdorff. Then the image of some 
 $h \in H = \bigcap_\alpha G_\alpha$ would be mapped to $e \in 
-\Complete{G}$; hardly a monomorphism. If the reader have missed 
-this point completely, the author is certain that an ill-natured 
-ridicule by snobbish mathematicians will quickly remedy this 
-defect. (Avoid ridicules.)
+\Complete{G}$; hardly a monomorphism. 
 \end{caution}
 
 \begin{defn}
@@ -168,16 +208,48 @@ map from $G$ to $G/G_\alpha$ is an isomorphism of topological
 groups.
 \end{defn}
 
-In particular,
-
 \begin{prop}
-Complete topological groups are Hausdorff.
+The map $i: G \to \Complete{G}$ is an injection if and only if
+$H = \cap_\alpha G_\alpha = \{e\}$. In particular, complete 
+topological groups are Hausdorff.
 \end{prop}
 \begin{proof}[Sketch of proof]
-The map $i: G \to \Complete{G}$ is an injection if and only
-if $H = \{e\}$. Now, use Lemma \ref{lem:top_grp_neigh_props} (4).
+The fact that $x \in H$ is in the kernel is clear; fix $x$ in
+the kernel. Then $h \in G_\alpha$ for every $\alpha$. The map $i: 
+G \to \Complete{G}$ is an injection if and only if $H = \{e\}$. 
+Now, use Lemma \ref{lem:top_grp_neigh_props} (4).
 \end{proof}
 
+To justify the name ``completion'', it is expected that 
+$\Complete{G}$ is complete. This is precisely the content of Cor. 
+\ref{cor:completion_is_complete}. We prove this in the following 
+steps:
+
+\begin{prop}
+The canonical homomorphism $i: G \to \Complete{G}$ descends to an 
+isomorphism $i_\alpha: G/G_\alpha \to 
+\Complete{G}/\Complete{G_\alpha}$.
+\end{prop}
+\begin{proof}
+
+\end{proof}
+
+\begin{prop}\label{prop:compl_is_morph_of_top_grps}
+The map $i:G \to \Complete{G}$ is continuous. Specifically, $i$
+is a morphism of topological groups.
+\end{prop}
+\begin{proof}
+
+\end{proof}
+
+\begin{cor}\label{cor:completion_is_complete}
+The completion $\Complete{G}$ is complete.
+\end{cor}
+\begin{proof}
+
+\end{proof}
+
+\subsection{Cauchy Sequences and Completion}
 
 There are two main classes of examples discussed in these notes.
 The first will be treated quite extensively in the rest of the
@@ -220,13 +292,13 @@ converges to $0$. Let $\sim$ denote this relation.
 \end{defn}
 
 It is rather straightforward to work out the following results.
-We sketch the proofs, though we encourage that the reader work
-these out, for they are quite fun.
+We give more or less complete proofs, though we encourage that the 
+reader work these out, for they are quite fun.
 
 \begin{prop}
 Let $G$ be a topological group given as above.
 
-\begin{enumerate}
+\begin{enumerate}\label{prop:cauchy_and_compl}
 \item $\sim$ is an equivalence relation.
 
 \item the equivalence classes (which we hereby write as 
@@ -299,8 +371,9 @@ a Cauchy sequence, since for each $G_j$, fixing $N = j$ satisfies
 the Cauchy sequence condition given in the definition.
 
 It is straightforward to see that the image of $(x_i)$ under 
-$\theta$ is $(\xi_i)$, since the image of $x_i$ in $G_j$ are all 
-the same, as shown above.
+$\theta$ is $(\xi_i)$, since the image of each $x_i$ for all 
+sufficiently large $i$ in a fixed $G_j$ are all identified, as 
+shown above.
 
 \pfitem{The group structure on $\overline{G}$ (Largely a sketch)} 
 : the Cauchy sequences exhibit a natural additive structure. Set 
@@ -345,8 +418,22 @@ $G/G_j$.
 Since this holds for all $j$, $\theta$ is additive. Finally, it
 is clear that $\theta(0) = 0$. Therefore, $\theta$ is a group
 homomorphism.
+
+To wrap up, we show that $\overline{G}$ is equipped with a system
+of neighborhoods given by $\overline{G}_i$
+
+\item As there is canonical map $G \to \Complete{G}$, there is
+also a map $G \to \overline{G}$, given by $g \mapsto (g)$, where
+$(g)$ denotes the constant sequence. It is straightforward (in
+fact downright easy) to verify from definition that $(g)$ is 
+Cauchy. It is also clear that this map is actually a morphism of
+topological groups
+
 \end{enumerate}
 \end{proof}
+
+\begin{cor}\label{cor:completion_is_complete}
+\end{cor}
 
 \begin{thm}[Artin-Rees Lemma]\label{thm:artin_rees_lemma}
 Let $R$ be a Noetherian ring, $\ideal{a}$ an $R$-ideal, and $M$ a
