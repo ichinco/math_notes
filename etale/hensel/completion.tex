@@ -30,7 +30,7 @@ since translates by elements of $g$ is a homeomorphism, the
 neighborhoods of the identity $e$ uniquely define the topology on 
 $G$. Immediately, we have the following useful result:
 
-\begin{lem}
+\begin{lem}\label{lem:top_grp_neigh_props}
 Let $H$ be the intersection of all open neighhoods of $G$. Then
 \begin{enumerate}
 \item $H$ is a normal subgroup of $G$.
@@ -74,10 +74,10 @@ g^{-1}h$ is continuous, and the inverse image of the closed set
 $\{e\}$ is precisely the diagonal, which is closed. It follows 
 that $G/H$ is Hausdorff.
 
-\item If $H = e$, then $G/H = G$, and therefore, $G$ is Hausdorff
+\item If $H = \{e\}$, then $G/H = G$, and therefore, $G$ is Hausdorff
 by (3). Conversely, if $G$ is Hausdorf, then for any $h \notin G$,
 there exists some open set $U$ containing $e$ but not $h$. It
-follows that $H = e$, as desired.
+follows that $H = \{e\}$, as desired.
 \end{enumerate}
 \end{proof}
 
@@ -109,7 +109,7 @@ $\pi(x_{\alpha}) = x_\beta$. In other words, the tupple satisfies
 \DEF{inverse system!coherence condition}{the coherence condition}
 for the inverse system $\{G/G_\alpha\}$.
 
-\begin{prop}
+\begin{prop}\label{prop:group_compl_is_group}
 The completion $\Complete{G}$ of the topological group $G$ is a 
 group.
 \end{prop}
@@ -137,10 +137,52 @@ topological spaces for an entire chapter!) We consider the reader
 duly warned, and any subsequent interest is mostly the reader's.
 \end{rmk}
 
+Notice that there exists a canonical map from $G$ into 
+$\Complete{G}$. Using the description of $\Complete{G}$ given before
+Prop. \ref{prop:group_compl_is_group}, we have the following 
+description for the map. If $\pi_\alpha: G \to G/G_\alpha$, then
+the injection $i: G \to \Complete{G}$ is given by
+\[
+i(g) = (\pi_\alpha(g)).
+\]
+Since $\pi_\alpha(gh) = \pi_\alpha(g)\pi_\alpha(h)$, we see that
+$i$ is a group homomorphism. In fact, per the preceding remark, 
+$i$ is a map of topological groups.
+
+\begin{caution}
+The reader may be tempted to say that $i$ (which could stand for 
+``injection'') is actually a monomorphism. This is \emph{NOT} true 
+in general. Suppose $G$ is not Hausdorff. Then the image of some 
+$h \in H = \bigcap_\alpha G_\alpha$ would be mapped to $e \in 
+\Complete{G}$; hardly a monomorphism. If the reader have missed 
+this point completely, the author is certain that an ill-natured 
+ridicule by snobbish mathematicians will quickly remedy this 
+defect. (Avoid ridicules.)
+\end{caution}
+
+\begin{defn}
+Let $G$ be a topological group with a system of neighborhoods
+given by normal subgroups. We say that $G$ is a \DEF{complete 
+topological group}{complete topological group} if the canonical
+map from $G$ to $G/G_\alpha$ is an isomorphism of topological
+groups.
+\end{defn}
+
+In particular,
+
+\begin{prop}
+Complete topological groups are Hausdorff.
+\end{prop}
+\begin{proof}[Sketch of proof]
+The map $i: G \to \Complete{G}$ is an injection if and only
+if $H = \{e\}$. Now, use Lemma \ref{lem:top_grp_neigh_props} (4).
+\end{proof}
+
+
 There are two main classes of examples discussed in these notes.
-The first will be treated quite extensively presently, and forms 
-the foundation for the rest of the material in this chapter. The 
-second will be the subject of study in Appendix 
+The first will be treated quite extensively in the rest of the
+section, and forms the foundation for the rest of the material in 
+this chapter. The second will be the subject of study in Appendix 
 \ref{appendix:profinite}. For now, we make the following 
 assumptions that will remain with us for the remainder of the 
 section:
@@ -198,16 +240,16 @@ compatible with the isomorphism in the previous bullet.
 group defined on the set of equivalence classes under $\sim$.
 \end{enumerate}
 \end{prop}
-\begin{proof}[Largely a sketch]
+\begin{proof}
 \begin{enumerate}
 \item These follow from the fact that each $G_i$ is a group. 
 Certainly $(x_i) \sim (x_i)$ since $x_i - x_i = 0 \in G_j$ for 
 every $i$ and $j$. This shows reflexivity.
 
-Suppose $(x_i) \sim (y_i)$. In other words, fix $G_j$ and suppose 
-$x_i - y_i \in G_j$ for all sufficiently large $i$. Then 
-$-(x_i - y_i) = y_i - x_i \in G_j$ for (the same) sufficiently 
-large $i$. This shows symmetry.
+Suppose $(x_i) \sim (y_i)$. In other words, fix $G_i$ and suppose 
+$x_j - y_j \in G_i$ for all sufficiently large $j$. Then 
+$-(x_j - y_j) = y_j - x_j \in G_i$ for (the same) sufficiently 
+large $j$. This shows symmetry.
 
 Finally, suppose $(x_i) \sim (y_i)$ and $(y_i) \sim (z_i)$.
 That is, fixing $G_i$, we have $x_j - y_j \in G_i$ for $j > N$,
@@ -215,21 +257,98 @@ and $y_k - z_k \in G_i$ for $k > M$. Set $N' = \max(N, M)$,
 and $x_l - y_l + y_l - z_l = x_l - z_l \in G_l$ for all $l > N'$.
 This shows transitivity.
 
-\item We first show that there is a set isomorphism that is also a group 
-isomorphism from $\overline{G}$ to $\Complete{G}$. 
+\item We first show that there is a set isomorphism that is also 
+a group isomorphism from $\overline{G}$ to $\Complete{G}$. 
+We proceed as follows:
 
+\pfitem{Define the map from $\overline{G}$ to $\Complete{G}$} :
+Fix a representative Cauchy sequence $(x_i) \in \overline{G}$ and 
+$G_j$. Notice that the image of $x_i$ in $G/G_j$ stabilized for 
+sufficiently large $i$. (This is another way of stating the 
+definition of $(x_i)$ being a Cauchy sequence.) Let such an image 
+be $\xi_j$. To check the coherence condition, we show that for 
+$\pi: G/G_i \to G/G_j$ (by our standing assumption, $i > j$), 
+$\pi(\xi_i)$ is isomorphic to $\xi_j$. Indeed, for a sufficiently 
+large $N$, both $\xi_i$ and $\xi_j$ can be represented by the same 
+element $x_N$. Thus, $(\xi_j)$ is an element of $\Complete{G}$.
 
+Finally, we check that the association defined above does not 
+depend on the choice of Cauchy sequence $(x_i)$. Pick another 
+representative Cauchy sequence $(x'_i)$. In particular, $(x_i) 
+\sim (x_i')$, so for every $G_i$ and all sufficiently large $j$, 
+the image $x_j - x_j' \in G_i$. That is, the image of $x_j - x_j'$ 
+is $0 \in G/G_i$. Thus $x_j$ and $x_j'$ represent the same element 
+$\xi_i$ in $G/G_i$. This holds for every $i$. Hence $\theta$ does 
+not depend on the choice of representative Cauchy sequence.
+
+We have defined a map $\theta : \overline{G} \to \Complete{G}$.
+
+\pfitem{$\theta$ is an iso} : suppose $\theta$ maps $(x_i)$ and 
+$(y_i)$ to the same element in $\Complete{G}$. That is, for each
+$i$ and all sufficiently large $j$, the image of $x_j - y_j$ is 
+$0$ in $G/G_i$. In other words, $(x_i)$ and $(y_i)$ are equivalent
+Cauchy sequences. This shows that $\theta$ is injective.
+
+For surjectivity, let $(\xi_i)$ represent a coherent sequence in
+$\Complete{G}$, and pick any representative $x_i$ of $\xi_i \in
+G/G_i$. We claim that the sequence $(x_i)$ defines a Cauchy
+sequence. Since $(\xi_i)$ is a coherent sequence, the image of
+$\xi_i$ in $G/G_j$ for all $i \geq j$ is precisely $\xi_j$. That 
+is $x_i - x_j \in G_j$ for all $i \geq j$. Hence $(x_i)$ defines
+a Cauchy sequence, since for each $G_j$, fixing $N = j$ satisfies
+the Cauchy sequence condition given in the definition.
+
+It is straightforward to see that the image of $(x_i)$ under 
+$\theta$ is $(\xi_i)$, since the image of $x_i$ in $G_j$ are all 
+the same, as shown above.
+
+\pfitem{The group structure on $\overline{G}$ (Largely a sketch)} 
+: the Cauchy sequences exhibit a natural additive structure. Set 
+\[
+(x_i) + (y_i) \defeq (x_i + y_i),\;\;\; \textrm{ and }\;\;\; 
+   -(x_i) \defeq (-x_i).
+\] 
+Fixing $G_i$, then for sufficiently large $N$, $x_j - x_k \in G_i$
+for all $j, k > N$. and sufficiently large $M$, $y_l - y_m \in 
+G_i$. Then for $N' = \max(N, M)$, and $j, k > N'$,
+\[
+(x_j + y_j) - (x_k + y_k) = (x_j - x_k) + (y_j - y_k) \in G_i.
+\]
+Therefore, $(x_i + y_i)$ is a Cauchy sequence. For $(-x_i)$ being
+a Cauchy sequence, the arguments are easier: since $G_i$ is a 
+group, if $x_j \in G_i$, then so is $-x_j$.
+
+Similarly, if $(x_i) \sim (x_i')$, then 
+\[
+(x_i + y_i) - (x_i' + y_i) = x_i - x_i'.
+\]
+and 
+\[
+-x_i - (-x_i') = -(x_i - x_i').
+\]
+Therefore, $(x_i + y_i) \sim (x_i' + y_i)$ and $(-x_i) \sim 
+(-x'_i)$. It follows that these operations descend to the 
+equivalence classes of Cauchy sequences.
+
+Finally, setting $0 = (0)$ as the identity, it is straightforward
+to verify that the structure as defined on $\overline{G}$ 
+satisfies the properties of a group.
+
+\pfitem{$\theta$ is a Group homomorphism} : as $\pi: G \to G/G_j$ 
+is a group homomorphism, we have that $\pi(x_i + y_i) = \pi(x_i) 
++ \pi(y_i)$, $\pi(-x_i) = -\pi(x_i)$ and $\pi(0) = 0$ for all $i$. 
+Then for $(x_i)$ and $(y_i)$ Cauchy sequences which define $\xi_j$
+and $\upsilon_j$ respectively in $G/G_j$, $(x_i + y_i)$ defines 
+$\xi_j + \upsilon_j$ and $(-x_i)$ defines $-\xi_i$ as elements of
+$G/G_j$. 
+
+Since this holds for all $j$, $\theta$ is additive. Finally, it
+is clear that $\theta(0) = 0$. Therefore, $\theta$ is a group
+homomorphism.
 \end{enumerate}
 \end{proof}
 
-\begin{defn}
-Let $G$ be a topological space with a nested sequence of neighborhoods
-given by subgroups. We say that $G$ is a 
-\DEF{complete topological space}{complete topological space} if
-$G$ 
-\end{defn}
-
-\begin{thm}{Artin-Rees Lemma}\label{thm:artin_rees_lemma}
+\begin{thm}[Artin-Rees Lemma]\label{thm:artin_rees_lemma}
 Let $R$ be a Noetherian ring, $\ideal{a}$ an $R$-ideal, and $M$ a
 finitely generated $R$-module, and $F^*M$ a stable 
 $\ideal{a}$-filtration of $M$. If $M'$ is a submodule of $M$ then
