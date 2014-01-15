@@ -1,21 +1,26 @@
-\section{Filtrations and completions.}
+\section{Filtrations, completions, and Artin-Rees.}
 
-We begin the discussion with a topological excursion, as to lay
+We begin the discussion with a topological excursion, as to lay 
 the ground work for discussions regarding ``adic'' completion in 
-this section. This topic is developed from the view point of a
-topological group. In this case, the group happens to be a ring
-$R$
+this section. This topic is developed from the view point of a 
+topological group. In this case, the group is a commutative ring 
+$R$ with a topology given by a system of ideals; certainly, the 
+ideas are more general. We do not treat the topic in full 
+generality, though the ideas will come up again in our discussion 
+of profinite groups in Appendix \ref{appendix:profinite}. The
+results here are taken from \cite{AM}, \cite{MatsCA} and 
+\cite{Eisenbud} as quasi-fascimile. Readers who are familiar with
+the ``adic'' completion and related results can safely skip this
+section.
 
-profinite groups in Appendix 
-\ref{appendix:profinite}. Throughout, let $G$ be a topological 
-group.\footnote{There are two equivalent ways of understanding 
-this notion. First --- the more classical way --- $G$ is a group 
-together with a topology on its underlying set in which left/right 
-multiplication with respect to any element $g \in G$ and taking 
-inverse are continuous are continuous functions from $G$ to $G$. 
-Second --- the more hipster way --- is to say that $G$ is a group 
-object in the category of topological spaces. That is, there are 
-maps of topological space
+Throughout, let $G$ be a topological group.\footnote{There are two 
+equivalent ways of understanding this notion. First --- the more 
+classical way --- $G$ is a group together with a topology on its 
+underlying set in which left/right multiplication with respect to 
+any element $g \in G$ and taking inverse are continuous are 
+continuous functions from $G$ to $G$.  Second --- the more hipster 
+way --- is to say that $G$ is a group object in the category of 
+topological spaces. That is, there are maps of topological space
 \[
 \mu: G \times G \to G\;\;\;\textrm{(composition) and}\;\;\;\;
 \iota: G \to G\;\;\;\textrm{(inverse)}
@@ -23,18 +28,105 @@ maps of topological space
 satisfying the axioms for composition and inverse.} In particular, 
 since translates by elements of $g$ is a homeomorphism, the 
 neighborhoods of the identity $e$ uniquely define the topology on 
-$G$. 
+$G$. Immediately, we have the following useful result:
 
-In particular,
-$G \times G \to G$ given by $(g, h) \mapsto g^{-1}h$ is 
-continuous, and the inverse image of the closed set $\{e\}$ is 
-precisely the diagonal. It follows that $G$ is Hausdorff.
+\begin{lem}
+Let $H$ be the intersection of all open neighhoods of $G$. Then
+\begin{enumerate}
+\item $H$ is a normal subgroup of $G$.
+
+\item $H$ is the closure of $\{e\}$.
+
+\item $G/H$ is Hausdorff.
+
+\item $G$ is Hausdorff if and only if $H = \{e\}$.
+\end{enumerate}
+\end{lem}
+
+A version of this proof for an abelian group $G$ can be found as
+\cite{AM} Lemma 10.1.
+
+\begin{proof}
+\begin{enumerate}
+\item fix $h \in H$, then $h^{-1} \in H$ (since taking inverse is 
+also a homeomorphism). In particular, translates of any open 
+neighborhood by $h$ contains $e$. It follows that $hH = H$, and 
+that $H$ is a subgroup. Similarly, conjugating by $g \in G$ is a 
+homeomorphism, whence $gHg^{-1} = H$. Hence $H \nsubg G$.
+
+\item Fix $U$ an open set of $G$ that does not contain $e$. We
+claim that $U$ does not meet $H$. Suppose not. Then fix $h \in U 
+\cap H$. But $e \in hU^{-1}$, and thus $hU^{-1}$ must be a 
+neighborhood of $e$. By definition, $h \in hU^{-1}$. It follows
+that $e \in U$, a contradiction.
+
+Therefore, $H$ is closed, and any closed set containing $e$
+also contains $H$. Thus, $H$ is the closure of $\{e\}$.
+
+\item By (1), $G/H$ is also a group, with topology given by the
+quotient topology. The map $G \to G/H$ is an open surjection (and 
+thereby also a closed map). Since $H$ is closed, the set $\{H\}$ 
+in $G/H$ is closed. Let $G' \defeq G/H$, and let us abuse 
+notations and write $e$ for the coset $H$.
+
+In particular, $G' \times G' \to G'$ given by $(g, h) \mapsto 
+g^{-1}h$ is continuous, and the inverse image of the closed set 
+$\{e\}$ is precisely the diagonal, which is closed. It follows 
+that $G/H$ is Hausdorff.
+
+\item If $H = e$, then $G/H = G$, and therefore, $G$ is Hausdorff
+by (3). Conversely, if $G$ is Hausdorf, then for any $h \notin G$,
+there exists some open set $U$ containing $e$ but not $h$. It
+follows that $H = e$, as desired.
+\end{enumerate}
+\end{proof}
+
+In the case where the fundamental system of neighborhoods 
+$\{G_\alpha\}$ of $e$ are given by normal subgroups of $G$, then 
+we have an inverse system.
+
+\begin{defn}
+Let $G$ be given as above. The \DEF{group completion}{completion}
+$\Complete{G}$ of $G$ is given by the inverse limit
+\[
+\Complete{G} = \varprojlim_{G_\alpha \subg G} G/G_\alpha.
+\]
+\end{defn}
+
+\begin{rmk}
+Here, we will not show why the group completion of such a 
+topological group is a group or a topological space. Both 
+statements are relatively straightforward to conceive, both 
+statements are true and both are treated in Appendix 
+\ref{appendix:profinite} in some terribly gruesome details. If
+the reader should be so interested, please consider herself
+duly warned, and placing her curiosity above efficiency.
+\end{rmk}
+
+There are two main classes of examples discussed in these notes.
+The first will be treated quite extensively in this section, and 
+forms the foundation for the rest of this section. The second will 
+be the subject of study in Appendix \ref{appendix:profinite}. For
+now, we make the following assumptions that will remain with us 
+for the rest of the section:
+
+\begin{enumerate}
+\item $G$ is an abelian group,
+
+\item the system of neighborhood form a countable tower of (normal)
+subgroups
+\[
+G = G_0 \supseteq G_1 \supseteq G_2 \supseteq \cdots \supseteq G_n 
+\supseteq \cdots.
+\]
+\end{enumerate}
+
+In this case, the completion has yet another more ``analytic'' 
+description.
 
 \begin{thm}{Artin-Rees Lemma}\label{thm:artin_rees_lemma}
 Let $R$ be a Noetherian ring, $\ideal{a}$ an $R$-ideal, and $M$ a
 finitely generated $R$-module, and $F^*M$ a stable 
 $\ideal{a}$-filtration of $M$. If $M'$ is a submodule of $M$ then
 $(M' \cap F^nM)$ is a stable $\ideal{a}$-filtration of $M'$.
-
-
 \end{thm}

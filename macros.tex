@@ -16,6 +16,8 @@
 % Ideals: \mathfrak{p}, \mathfrak{q}
 % Integers: i, j, k, l, m, n
 
+\usepackage{latexsym}
+
 % extending latex
 \newcommand{\longhookrightarrow}{
    \ensuremath{\lhook\joinrel\relbar\joinrel\rightarrow}
@@ -52,6 +54,14 @@
 % phrases that are often written but should not
 % have to be
 \newcommand{\WLOG}{without loss of generality}
+
+% general operations in mathematics
+\newcommand{\Complete}[1]{\widehat{#1}}
+
+% group
+\newcommand{\subg}{<}
+\newcommand{\nsubg}{\lhd}
+\newcommand{\nsubgeq}{\unlhd}
 
 % rings, ideals
 \newcommand{\ideal}[1]{\mathfrak{#1}}
