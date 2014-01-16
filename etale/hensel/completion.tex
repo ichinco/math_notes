@@ -124,7 +124,7 @@ of $(x_\alpha)$. Verify that both sequences satisfy the coherence
 condition for $\{G/G_\alpha\}$, and define elements in 
 $\Complete{G}$.
 
-We abuse notation and write $e \in \Complete{G}$ to be sequence 
+We abuse notation and write $e \in \Complete{G}$ for the sequence 
 $(e \in G/G_\alpha)$. Then $e$ is also an element of $\Complete{G}$.
 Together, the composition, inverse, and $e$ satisfy the axioms of
 a group.
@@ -231,7 +231,27 @@ isomorphism $i_\alpha: G/G_\alpha \to
 \Complete{G}/\Complete{G_\alpha}$.
 \end{prop}
 \begin{proof}
+Consider the composition $G \to \Complete{G} \to 
+\Complete{G}/\Complete{G_\alpha}$. The kernel is precisely 
+$G_\alpha$, and therefore, the map factors through $G/G_\alpha$.
+In particular, $G/G_\alpha$ is an injection, and it suffices to
+show that this map is a surjection.
 
+For this, fix $x_\alpha \in G/G_\alpha$, and let $x$ be a coset
+representative of $x_\alpha$. Suppose $(y_\beta)$ is element of
+$\Complete{G}$ whose $G/G_\alpha$ component is $x_\alpha$, then
+we claim that the constant sequence $(x)$ and $(y_\beta)$ differs
+by an element of $\Complete{G_\alpha}$. That is, $(x^{-1}y_\beta)$
+is an element of $\Complete{G_\alpha}$.
+
+This follows from the coherence condition. Fix $G_\beta$. We wish
+to show that $x^{-1}y_{\beta} \in G/G_\beta$ lies in the image of
+$G_\alpha$. Notice that $x^{-1}y_\beta$ is the image of 
+$x^{-1}y_{\beta'} \in G/G_{\beta'}$ for $G_{\beta'} = G_\alpha 
+\cap G_\beta$. Replacing $\beta$ by $\beta'$, we may assume that 
+$G_\beta$ is a subset of $G_\alpha$. However, in this case, the 
+image of $x^{-1}y_{\beta}$ under $G/G_{\beta} \to G/G_{\alpha}$ is 
+$e$. The claim follows.
 \end{proof}
 
 \begin{prop}\label{prop:compl_is_morph_of_top_grps}
@@ -239,14 +259,22 @@ The map $i:G \to \Complete{G}$ is continuous. Specifically, $i$
 is a morphism of topological groups.
 \end{prop}
 \begin{proof}
-
+Let $U$ be an open set in $\Complete{G}$. We show that $i^{-1}(U)$ 
+is open. By previous proposition, $U = i(x) + \Complete{G_\alpha}$
+for some $x \in G$. Therefore, it suffices to assume that $U$ is
+a neighborhood of $e \in \Complete{G}$. That is, $U = 
+\Complete{G_\alpha}$. But $i^{-1}(U) = G_\alpha$, which is open in
+$G$. The proposition follows.
 \end{proof}
 
 \begin{cor}\label{cor:completion_is_complete}
 The completion $\Complete{G}$ is complete.
 \end{cor}
 \begin{proof}
-
+There is a one-to-one correspondence of neighborhoods of $e \in G$ 
+and neighborhoods of $e \in \Complete{G}$. Furthermore, 
+$G/G_\alpha \iso \Complete{G}/\Complete{G_\alpha}$. Taking limits,
+we have that $\Complete{G} \iso \Complete{(\Complete{G})}$.
 \end{proof}
 
 \subsection{Cauchy Sequences and Completion}
