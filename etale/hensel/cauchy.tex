@@ -1,12 +1,12 @@
 \subsection{Cauchy Sequences and Completion}
 
-There are two main classes of examples discussed in these notes.
-The first will be treated quite extensively in the rest of the
-section, and forms the foundation for the rest of the material in 
-this chapter. The second will be the subject of study in Appendix 
-\ref{appendix:profinite}. For now, we make the following 
-assumptions that will remain with us for the remainder of the 
-section:
+There are two main classes of examples of completions discussed in 
+these notes. The first will be treated quite extensively in the 
+rest of the section, and forms the foundation for the rest of the 
+material in this chapter. The second will be the subject of study 
+in Appendix \ref{appendix:profinite}. For now, we make the 
+following assumptions that will remain with us for the remainder 
+of the section:
 
 \begin{enumerate}
 \item $G$ is an abelian group, and from now on, we will write
@@ -45,25 +45,13 @@ We give more or less complete proofs, though we encourage that the
 reader work these out, for they are quite fun.
 
 \begin{prop}
-Let $G$ be a topological group given as above.
-
-\begin{enumerate}\label{prop:cauchy_and_compl}
-\item $\sim$ is an equivalence relation.
-
-\item the equivalence classes (which we hereby write as 
-$\overline{G}$) of $G$ under $\sim$ form a complete topological 
-abelian group isomorphic to $\Complete{G}$.
-
-\item there is a canonical map from $G$ to $\overline{G}$ that is
-compatible with the isomorphism in the previous bullet.
-
-\item $G$ is complete if and only if $G$ is isomorphic to the
-group defined on the set of equivalence classes under $\sim$.
-\end{enumerate}
+Let $G$ be a topological group given as above, with $\sim$ as the
+relation on Cauchy sequences of $G$. Then $\sim$ is an equivalence 
+relation.
 \end{prop}
+
 \begin{proof}
-\begin{enumerate}
-\item These follow from the fact that each $G_i$ is a group. 
+The claim follows from the fact that each $G_i$ is a group. 
 Certainly $(x_i) \sim (x_i)$ since $x_i - x_i = 0 \in G_j$ for 
 every $i$ and $j$. This shows reflexivity.
 
@@ -77,8 +65,16 @@ That is, fixing $G_i$, we have $x_j - y_j \in G_i$ for $j > N$,
 and $y_k - z_k \in G_i$ for $k > M$. Set $N' = \max(N, M)$,
 and $x_l - y_l + y_l - z_l = x_l - z_l \in G_l$ for all $l > N'$.
 This shows transitivity.
+\end{proof}
 
-\item We first show that there is a set isomorphism that is also 
+Write $\overline{G}$ for the equivalence classes of $G$.
+
+\begin{prop}
+$\overline{G}$ form a complete topological abelian group 
+isomorphic to $\Complete{G}$.
+\end{prop}
+\begin{proof}
+We first show that there is a set isomorphism that is also 
 a group isomorphism from $\overline{G}$ to $\Complete{G}$. 
 We proceed as follows:
 
@@ -168,15 +164,27 @@ Since this holds for all $j$, $\theta$ is additive. Finally, it
 is clear that $\theta(0) = 0$. Therefore, $\theta$ is a group
 homomorphism.
 
-To wrap up, we show that $\overline{G}$ is equipped with a system
-of neighborhoods given by $\overline{G}_i$
+Define $\overline{G_i}$ to be the collection of sequences $(x_i)$
+such that $x_k \in G_i$ for all $k$ sufficiently large.
+\end{proof}
 
-\item As there is canonical map $G \to \Complete{G}$, there is
+\begin{prop}
+There is a canonical map from $G$ to $\overline{G}$ that is
+compatible with the isomorphism in the previous bullet.
+\end{prop}
+\begin{proof}
+As there is canonical map $G \to \Complete{G}$, there is
 also a map $G \to \overline{G}$, given by $g \mapsto (g)$, where
 $(g)$ denotes the constant sequence. It is straightforward (in
 fact downright easy) to verify from definition that $(g)$ is 
 Cauchy. It is also clear that this map is actually a morphism of
 topological groups
+\end{proof}
 
-\end{enumerate}
+\begin{cor}
+$G$ is complete if and only if $G$ is isomorphic to the
+group defined on the set of equivalence classes under $\sim$.
+\end{cor}
+\begin{proof}
+
 \end{proof}
