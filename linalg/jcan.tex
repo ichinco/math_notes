@@ -1,0 +1,115 @@
+\section{Jordan Canonical Form}
+
+We want to prove the following statement: 
+
+\begin{thm}[Existence of Jordan Canonical Form]
+Let $M : V \to V$ be a linear map from an $n$-dimensional 
+$\C$-vector space to itself. Then there exists a basis 
+$\{e_1,\dots,e_n\}$ of $V$ such that the linear map $M$
+can be represented by a block-diagonal matrix:
+\[
+\left(
+\begin{matrix}
+A_1 &0   & 0     &0 \\
+0   &A_2 & 0     &0 \\
+0   &0   &\ddots &0 \\
+0   &0   &0      &A_k
+\end{matrix}
+\right)
+\]
+such that $A_i$ is a matrix of the form
+\[
+\left(
+\begin{matrix}
+\lambda_i & 1         & 0      & 0         & 0 \\
+0         & \lambda_i & 1      & 0         & 0 \\
+0         & 0         & \ddots & 1         & 0 \\
+0         & 0         & 0      & \lambda_i & 1 \\
+0         & 0         & 0      & 0         & \lambda_i
+\end{matrix}
+\right)
+\]
+for some $\lambda_i$ in $\C$. To clarify, the $\lambda_i$'s can 
+take on any value. They do not have to be distinct; they can also
+be 0.
+\end{thm}
+
+This is essentially the argument given in Artin's book (and is
+univeral amongst algebra texts that present this result, though 
+the style of the presentation may be different).
+
+The main idea of the proof is to show that we can think of $V$
+as a module over the polynomial ring $\C[x]$. Using the fact
+that we know exactly the structure of these modules because
+$\C[x]$ is a principle ideal domain (), 
+
+we obtain
+a characterization of
+
+There are a number of results which we will mention in passing, 
+and we will not prove them in detail for the sake of brevity, 
+though please feel free to ask me to clarify as needed:
+
+\begin{lem}\label{lem:Cx_is_PID}
+Let $\C[x]$ be the polynomial algebra in one (free) variable. Then
+$\C[x]$ is an Euclidean domain and a principle ideal domain (PID).
+\end{lem}
+\begin{proof}
+The somewhat sketchy proof goes like this: an Euclidean domain
+is PID (see Artin Chapter 11, Proposition 2.20 on page 398). It 
+suffices, then, to show that $\C[x]$ is an Euclidean domain.
+
+Recall that a domain is a ring such that the product of any two 
+nonzero elements of the ring cannot be $0$. That is, $R$ is a
+domain if for elements $f, g$ of $R$, $fg = 0$ then $f = 0$ or
+$g = 0$. 
+
+Showing that $\C[x]$ is a domain is straightforward.
+\footnote{A proof: to see that $\C[x]$ is a domain, we need to 
+show that the product of two nonzero polynomials cannot be zero. 
+Pick two nonzero polynomials $f(x)$ and $g(x)$, and let $ax^n$ and
+$bx^m$ be the leading term of $f(x)$ and $g(x)$ respectively. The 
+product $f(x)g(x)$ has a leading term $abx^{n + m}$ which is 
+certainly not zero.}
+
+To see that $\C[x]$ has satisfy the Euclidean condition, we will
+must show that for any $f(x)$ and $q(x)$ in $\C[x]$ and with
+polynomial degree $n$ and $m$ respectively. Then there exists
+$g(x)$ such that $f(x) = g(x)q(x) + r(x)$ where the polynomial
+degree of $r(x)$ is less than $m$. This condition is modelled 
+after long division with remainder. While is this not the most
+general notion of a ring being Euclidean (see Artin Chapter 11,
+2.17 on page 397), for all intents and purposes, this is good
+enough for us.
+
+Let $f(x)$ and $q(x)$ (which has polynomial degree $m$) be 
+arbitrary polynomials in $\C[x]$. We proceed by induction on the 
+difference between the degree of $f(x)$ and $q(x)$ (starting with 
+\[
+\deg f(x) - \deg q(x) = -1,
+\] 
+i.e. $\deg f(x) < \deg q(x)$). If $f(x)$ has a degree strictly 
+less than $q(x)$ , then we are done: let $g(x) = 0$ and $r(x) = 
+f(x)$, and the condition is satisfied. 
+
+Now, suppose the Euclidean condition holds for all polynomials 
+whose degree is $n$ more than that of $q(x)$, i.e. all polynomials
+of degree $n + m$; let $f(x)$ be some polynomial whose degree is 
+$n + m + 1$. Suppose further that $ax^{n + m + 1}$ is the leading 
+term of $f(x)$ and $bx^m$ is the leading term of $q(x)$. Notice
+that we can cancel the leading term of $f(x)$ by subtracting from
+it a multiple of $q(x)$: let $h(x)$ be the polynomial $f(x) - 
+\frac{a}{b}x^{n + 1}q(x)$. Then, $h(x)$ is a polynomial with 
+degree $n + m$. By the induction hypothesis, $h(x) = g(x)q(x) +
+r(x)$. So $f(x) = (g(x) + ax^{m + 1}/b)q(x) + r(x)$.
+\end{proof}
+
+\begin{lem}[The Structure Theorem of PIDs]
+\end{lem}
+
+This is essentially a generalization of the arguments provided
+in Artin Chapter 12 Theorem 6.4 on page 472.
+
+\begin{proof}
+
+\end{proof}
