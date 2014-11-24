@@ -1,0 +1,59 @@
+\documentclass[11pt]{book}
+
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{stmaryrd}
+
+%Diagram package
+\usepackage{tikz}
+\usetikzlibrary{matrix}
+\usetikzlibrary{arrows}
+\usetikzlibrary{decorations.pathmorphing}
+\usepackage{tikz-cd}
+
+\newcounter{items}[section]
+\setcounter{items}{1}
+
+% The following causes equations to be numbered within sections
+\numberwithin{equation}{section}
+\theoremstyle{plain} %% This is the default, anyway
+\newtheorem{thm}[equation]{Theorem}
+\newtheorem{cor}[equation]{Corollary}
+\newtheorem{lem}[equation]{Lemma}
+\newtheorem{prop}[equation]{Proposition}
+\newtheorem{por}[equation]{Porism}
+
+\theoremstyle{definition}
+\newtheorem{defn}[equation]{Definition}
+\newtheorem{caution}[equation]{Caution}
+\newtheorem{rmk}[equation]{Remark}
+\newtheorem{ex}[equation]{Example}
+
+\input{../macros}
+\input{../book_macros}
+
+\begin{document}
+\title{\'Etale Cohomology}
+
+\maketitle
+
+\tableofcontents
+\addtocontents{toc}{~\hfill\textbf{Page}\par}
+
+\input{preface}
+
+\part{Algebraic Geometry Front Matter}
+
+\input{etale_morph/zariski}
+
+\input{hensel/basic.tex}
+
+\input{appendix/algeo}
+\input{appendix/profinite}
+
+\input{index}
+\input{biblio}
+\end{document}

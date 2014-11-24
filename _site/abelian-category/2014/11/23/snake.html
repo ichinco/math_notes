@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title> snake |  </title>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <link rel="author" href="humans.txt"/>
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/feed.xml" />
+
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.1.1/katex.min.css">
+  </head>
+
+  <body>
+   <header>
+     <h1><a href="/">Welcome to </a></h1>
+     <h4></h4>
+     <hr />
+   </header>
+
+   <nav>
+     <h3>First Heading</h3>
+       <ul>
+         <li><i class="icon-home"></i>   <a href="/">Home</a></li>
+         <li><i class="icon-mail"></i>   <a href="/contact">Contact</a></li>
+         <li><i class="icon-th"></i>     <a href="/archive">Archive</a></li>
+         <li><i class="icon-rss"></i>    <a href="/feed.xml">RSS Feed</a></li>
+       </ul>
+       <h3>Second Heading</h3>
+       <ul>
+         <li><i class="icon-link"></i>   <a href="#">Link 1</a></li>
+         <li><i class="icon-link"></i>   <a href="#">Link 2</a></li>
+         <li><i class="icon-link"></i>   <a href="#">Link 3</a></li>
+       </ul>
+    </nav>
+    <main>
+       <article>
+ <header>
+   <h2>snake</h2>
+   <span><i class="icon-clock"></i><time datetime="2014-11-23">Nov 23, 2014</time></span><br/>
+   <span class="category"><i class="icon-tag"></i> abelian-category</span><br/>
+   <span class="author"><i class="icon-user"></i> </span>
+ </header>
+
+ <div class="entry"><h2>Abelian Categories</h2>
+
+<div class="proposition">
+\begin{prop}[Snake Head/Tail]
+Let <div class="render-math">A, B, C, A', B', C'</div> be objects of an abelian category 
+$\Cat{A}$ which fit into the following diagram:
+\[
+<div>
+A \arrow{r}{f} \arrow{d}{\alpha} &
+B \arrow{r}{g} \arrow{d}{\beta} &
+C \arrow{r} \arrow{d}{\gamma} &
+0 \\
+A' \arrow{r}{f'} &
+B' \arrow{r}{g'} &
+C' \arrow{r} &
+0
+</div>
+\]
+such that the rows are exact. Then, the snake tail:
+\[
+\cok \alpha \to \cok \beta \to \cok \gamma \to 0
+\] 
+is exact.
+
+Dually, if
+\[
+\begin{tikzcd}
+0 \arrow{r}&
+A \arrow{r}{f} \arrow{d}{\alpha} &
+B \arrow{r}{g} \arrow{d}{\beta} &
+C \arrow{d}{\gamma} \\
+0 \arrow{r}&
+A' \arrow{r}{f'} &
+B' \arrow{r}{g'} &
+C' 
+\end{tikzcd}
+\]
+is commutative, where the rows are exact, then the snake
+head
+\[
+0 \to \ker \alpha \to \ker \beta \to \ker \gamma
+\]
+is exact.
+</div>
+
+<div class="proof">
+We prove the statement for the snake tail.
+
+To simplify notation, let <div class="render-math">A'' = \cok \alpha, B'' = \cok \beta,</div> 
+and <div class="render-math">C'' = \cok \gamma</div>; let <div class="render-math">\alpha': A' \to A'', \beta': B' \to 
+B'',</div> and <div class="render-math">\gamma': C' \to C''</div> be the canonical projections. 
+By the universal property of cokernels, there exists unique
+maps
+\[
+A'' \stackrel{f''}{\to} B'' \stackrel{g''}{\to} C''.
+\]
+For the ease of the reader, we have the following diagram as setup
+for the following arguments:
+\[
+\begin{tikzcd}
+A \arrow{r}{f} \arrow{d}{\alpha} &
+B \arrow{r}{g} \arrow{d}{\beta} &
+C \arrow{r} \arrow{d}{\gamma} &
+0 \\
+A' \arrow{r}{f'} \arrow{d}{\alpha'} &
+B' \arrow{r}{g'} \arrow{d}{\beta'} &
+C' \arrow{r} \arrow{d}{\gamma'} &
+0 \\
+A'' \arrow{r}{f''} &
+B'' \arrow{r}{g''} &
+C''
+\end{tikzcd}
+\]
+Here, only the top two rows are exact.
+
+We proceed as follows:
+
+\pfitem{$g''$ is surjective}: There are two ways of doing this.
+We proceed the elementary way first, and then continue with
+a categorical argument. These steps are rather straight-forward, 
+and it might be worthwhile to work out the details for yourself 
+before reading ahead.
+
+Fix $c'' \in C''$. Then $c'' = \gamma'(c')$ for some $c' \in \C'$
+since $\gamma'$ is surjective. However, $B'$ maps onto $C'$ via
+$g'$ and therefore, there exists some $b' \in B'$ such that $g'(b')
+= c'$.
+
+That is, $\gamma'g'(b) = c''$. But $\gamma'g' = g''\beta'$. In
+$g''(b)$ maps to $c''$ via $g''$.
+
+\pfitem{$g''$ is surjective (categorical)} : We show that $C''$
+is isomorphic to the push-out of
+\[
+\begin{tikzcd}
+B' \arrow{r}{g'} \arrow{d}{\beta'} &C' \\
+B''.
+\end{tikzcd}
+\]
+
+Fix $D \in \Cat{A}$ and suppose that there exists maps $\delta: 
+C' \to D$ and $h: B'' \to D$ such that $\delta g' = h\beta'$.
+Consider the map $B \to D$ given by $\delta \gamma g$. This is
+$0$ since
+\begin{align*}
+\delta \gamma g &= \delta g' \beta \\
+                &= h \beta' \beta \\
+                &= 0.
+\end{align*}
+But $g$ is an epi, and thus, $h \gamma = 0$. Since $C' \to C''$
+is the cokernel of $\gamma$, it follows that there exists an 
+unique map $\pi: C'' \to D$ such that $\pi \gamma' = \delta.$
+
+To show that $\pi g'' = h$, observe that
+\begin{align*}
+h \beta' &= \delta g' \\
+         &= \pi \gamma' g' \\
+         &= \pi g'' \beta'.
+\end{align*}
+But $\beta'$ is an epi, which must imply that $\pi g'' = h$ as
+desired.
+
+To complete this step, notice that the push-out of a surjection
+is a surjection (Prop. \ref{prop:pushout_epi}).
+
+Therefore, we have the following diagram:
+\[
+\begin{tikzcd}
+A \arrow{r}{f} \arrow{d}{\alpha} &
+B \arrow{r}{g} \arrow{d}{\beta} &
+C \arrow{r} \arrow{d}{\gamma} &
+0 \\
+A' \arrow{r}{f'} \arrow{d}{\alpha'} &
+B' \arrow{r}{g'} \arrow{d}{\beta'} &
+C' \arrow{r} \arrow{d}{\gamma'} &
+0 \\
+A'' \arrow{r}{f''} &
+B'' \arrow{r}{g''} &
+C'' \arrow{r} &
+0,
+\end{tikzcd}
+\]
+where the top two rows are exact.
+
+\pfitem{Sequence is exact at $B''$}: Once again, we show this
+using elements firsts, before proving the statement on a 
+categorical level. 
+
+Fix $b'' \in B''$ s.t. $g''(b'') = 0$. Since $\beta'$ is 
+surjective, there exists some $b' \in B'$ such that $b'' = 
+\beta'(b')$. However, $g''\beta' = \gamma' g'$, and 
+therefore, $g'(b') \in \ker \gamma'$. By the exactness of
+the sequence
+\[
+C \stackrel{\gamma}{\to} C' \stackrel{\gamma'}{\to} C'' \to 0
+\]
+there exists some $c \in C$ such that $\gamma(c) = g'(b')$.
+Since $g$ is surjective, $c$ is in turn the image of some $b
+\in B$. Thus, $\gamma g(b) = g'(b')$. But $\gamma g = g' \beta$.
+Then $b' - \beta(b)$ must vanish under $g'$. Therefore, by the 
+exactness of 
+\[
+A' \stackrel{f'}{\to} B' \stackrel{g'}{\to} C' \to 0
+\]
+there exists some $a' \in A'$ such that $f'(a') = b' - \beta(b)$.
+We claim that $\alpha'(a')$ maps to $b''$. Indeed,
+\begin{align*}
+f'' \alpha'(a') &= \beta' f'(a') \\
+                &= \beta'(b' - \beta(b)) \\
+                &= \beta'(b') - 0 \\
+                &= b'',
+\end{align*}
+and this step is established (elementarily).
+
+\pfitem{Sequence is exact at $B''$ (categorical)}: The trick here 
+is to show that $C''$ is the cokernel of $A'' \to B''$ using the
+fact that $C''$ is the push-out established in the previous point.
+To do so, fix $D \in \Cat{A}$, and suppose that there exists a 
+map $h: B'' \to D$ such that $h f'' = 0$. We define a map from 
+$\delta: C' \to D$ such that $\delta g' = h \beta'$.
+
+Notice that the map $A' \to D$ defined by $h \beta' f'$ is 
+$0$, since this map is equal to $h f'' \alpha'$. Since $g': B' 
+\to C'$ is the cokernel of $f'$, there exists a map $\delta: C'
+\to D$ such that $\delta g' = h \beta'$.
+
+Since $C''$ is the push-out, there exists a unique map $\pi: C''
+\to D$ such that $\pi \gamma' g' = \pi g'' \beta' = h \beta'$.
+Since $\beta'$ is an epi, $\pi g'' = h$, and $B'' \to C''$ is the 
+cokernel as desired.
+</div>
+</div>
+
+									        <footer><!-- additional info --></footer>
+
+										</article>
+
+    </main>
+    <footer>
+       <hr />
+       <p>&copy; <time>2012</time> </p>
+    </footer>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.1.1/katex.min.js"></script>
+    <script src="/scripts.js"></script>
+    </body>
+</html>

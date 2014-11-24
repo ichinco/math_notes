@@ -1,0 +1,1057 @@
+\section{Jordan Canonical Form}
+
+Throughout, we assume all vector spaces are over $\C$, the complex 
+numbers. This assumption is useful because all polynomials with 
+$\C$ coefficients can be factored into linear factors. We seek to 
+prove the following statement:
+
+\begin{thm}[Existence of Jordan Canonical Form, 4.7.10a]\label{thm:JCF}
+Let $T : V \to V$ be a linear map from an $n$-dimensional 
+$\C$-vector space to itself. Then there exists a basis 
+$\{e_1,\dots,e_n\}$ of $V$ such that the linear map $T$
+can be represented by a block-diagonal matrix:
+\[
+\left(
+\begin{matrix}
+A_1 &0   &\cdots &0 \\
+0   &A_2 &\cdots &0 \\
+0   &0   &\ddots &0 \\
+0   &0   &\cdots &A_k
+\end{matrix}
+\right)
+\]
+such that $A_i$ is a matrix of the form
+\begin{equation}\label{eq:jordan_block}
+\left(
+\begin{matrix}
+\lambda_i & 1         & \cdots & 0         & 0 \\
+0         & \lambda_i & \ddots & 0         & 0 \\
+0         & 0         & \ddots & 1         & 0 \\
+0         & 0         & \cdots & \lambda_i & 1 \\
+0         & 0         & \cdots & 0         & \lambda_i
+\end{matrix}
+\right)
+\end{equation}
+for some $\lambda_i$ in $\C$. To clarify, the $\lambda_i$'s can 
+take on any value. They do not have to be distinct; they can also
+be 0.
+\end{thm}
+
+What does this mean? Here is one interpretation that may be
+be helpful: there is a basis $\{\mathbf{e}_1,\dots,\mathbf{e}_n\}$ 
+of $V$ with the property that for all vectors $v$ of $V$,
+\[
+v = \sum_{i = 0}^n a_i \mathbf{e}_i
+\]
+then the coefficients of $T(v)$ (considered as a column vector) 
+is obtained by the product
+\[
+\left(
+\begin{matrix}
+A_1 &0   & 0     &0 \\
+0   &A_2 & 0     &0 \\
+0   &0   &\ddots &0 \\
+0   &0   &0      &A_k
+\end{matrix}
+\right)
+\left(
+\begin{matrix}
+a_1\\
+a_2\\
+\vdots\\
+a_n
+\end{matrix}
+\right)
+\]
+where each $A_i$ is a matrix of the form given in 
+\eqref{eq:jordan_block}. We hereby refer to matrices such as $A_i$
+\DEF{(upper) Jordan block matrices}. There is also a lower Jordan block,
+where the $1$'s are below the diagonal. We will not consider the
+latter, as outside of a neighborhood of $\epsilon$ around Artin,
+no one considers these types of matrices\footnote{This is probably 
+not true.}.
+
+We say that a block diagonal matrix $M$ is \DEF{in Jordan 
+canonical form} if each of its blocks is a Jordan block.
+
+This theorem is also a statement about matrices:
+
+\begin{cor}[Jordan Canonical Form, 4.7.10b]
+Let $A$ be an $n \times n$ matrix. Then there exists an invertible 
+matrix $P$ such that the matrix product $P^{-1}AP$ is in Jordan
+form.
+\end{cor}
+\begin{proof}
+Why does the corollary follow from the Theorem? Fix a basis
+\[
+\mathbf{B} \defeq \{\mathbf{e}_1,\dots, \mathbf{e}_n\}
+\]
+of the vector space $V$, and let $T$ be a linear operator 
+represented by the matrix $A$ with respect to the given basis 
+$\mathbf{B}$. On the other hand, by the theorem, there exists 
+another basis 
+\[
+\mathbf{B}' \defeq \{\mathbf{e}'_1,\dots, \mathbf{e}'_n\}
+\] 
+of $V$ such that with respect to this new basis, $T$ is 
+represented as a matrix $M$ in Jordan form.
+
+Writing the basis $\{\mathbf{e}'_1,\dots,\mathbf{e}'_n\}$ in terms
+of $\{\mathbf{e}_1,\dots,\mathbf{e}_n\}$, we have:
+\begin{align*}
+\mathbf{e}'_1 &= p_{11}\mathbf{e}_1 + p_{12}\mathbf{e}_2 + \cdots +
+p_{1n}\mathbf{e}_n \\
+\mathbf{e}'_2 &= p_{21}\mathbf{e}_1 + p_{22}\mathbf{e}_2 + \cdots +
+p_{2n}\mathbf{e}_n \\
+\cdots\\
+\mathbf{e}'_n &= p_{n1}\mathbf{e}_1 + p_{n2}\mathbf{e}_2 + \cdots +
+p_{nn}\mathbf{e}_n 
+\end{align*}
+The values $p_{ij}$, $1 \leq i,j \leq n$ form a matrix $P$ that 
+tells you, for a vector $v$, how to convert the coefficients when 
+writing $v$ as a linear combination of $\{\mathbf{e}'_1, \dots, 
+\mathbf{e}'_n\}$ to the coefficients when writing $v$ as a linear 
+combination of $\{\mathbf{e}_1,\dots, \mathbf{e}_n\}$. A 
+coordinate change, if you will.
+
+Similarly, we obtain a matrix $Q$ that tells you how to convert
+$\mathbf{B}$-coefficients to $\mathbf{B}'$-coefficients. It is easy
+to see that $PQ$ and $QP$ are both the identity matrix: this is 
+because when you convert from $\mathbf{B}$-coefficients to 
+$\mathbf{B}'$-coefficients and back (and vice-versa), you should
+get back the same set of coefficients. In particular, $P$ and $Q$
+are inverses of one another, i.e. $Q = P^{-1}$.
+
+Given a vector $v$, first write $v$ as a linear combination
+$\sum_{i = 1}^n a_i\mathbf{e}'_i$. Then coefficients of $T(v)$ is 
+the column vector given by the product
+\[
+M\left(
+\begin{matrix}
+a_1\\
+a_2\\
+\vdots\\
+a_n
+\end{matrix}
+\right).
+\]
+But we can obtain the $\mathbf{B}'$-coefficients of $T(v)$ in
+another way: first convert $v$ in the $\mathbf{B}'$-coefficients 
+to $\mathbf{B}$-coefficients, multiply by the matrix $A$ and then
+convert them back to $\mathbf{B}'$-coefficients. This is precisely
+\[
+P^{-1}AP\left(
+\begin{matrix}
+a_1\\
+a_2\\
+\vdots\\
+a_n
+\end{matrix}
+\right).
+\]
+There two column vectors must be the same, because they represent
+the $\mathbf{B}$'-coordinates of the same vector, namely those of 
+$T(v)$. As this must hold true for all vectors $v$ in $V$, we have
+$M = P^{-1}AP$. That is, for any matrix $A$, there exists an 
+invertible matrix $P$ such that $P^{-1}AP$ is in Jordan canonical
+form.
+\end{proof}
+
+Now we will prove the main theorem. The proof is \emph{not} 
+constructive, as in, the proof does not explicitly construct the
+bases for which $T$ is in Jordan canonical form. To find such a
+basis, you would have to --- to borrow a phrase from ``A Street
+Car Named Desire'' --- rely on the kindness of strangers; in this 
+case, your instructor. 
+
+Nonetheless, the proof is rather telling. It relies on 
+showing that generalized eigenvectors (defined in 
+\ref{def:generalized_eigenvector}) of nilpotent operators (defined 
+below in Def. \ref{def:nilpotent_operators}) form a basis of
+the vector space (\ref{lem:gen_eigen_basis}). In this case, the 
+matrix representation of the nilpotent operator is in fact Jordan 
+canonical (\ref{thm:nilpotent_JCF}). For the more general 
+statement, we show that a vector space $V$ decomposes into its
+eigen-subspaces $V_i$ (defined in \ref{def:eigenspace}). These 
+generalized eigenvectors form a basis of the vector space $V$,
+such that the matrix representation of $T$ has the desired form.
+
+The proof will be divided into several lemmas. The arguments, we 
+hope, will be better than those presented in Artin. With humility, 
+we claim no such thing.
+
+Let us begin by introducing the following notion:
+
+\begin{defn}\label{def:generalized_eigenvector}
+Let $T: V \to V$ be a linear operator, and let $\lambda$ be an
+eigenvalue of $T$. Then a vector $v$ in $V$ is a \DEF{generalized
+eigenvector} if 
+\begin{equation}\label{eq:def_generalized_eigenvector}
+(T - \lambda I)^d(v) = 0
+\end{equation}
+for some positive integer $d$. We call the smallest $d$ satisfying
+\eqref{eq:def_generalized_eigenvector} the \DEF{exponent} of $v$.
+\end{defn}
+
+Why the word \emph{generalized}? Regular eigenvectors are 
+generalized eigenvectors. They are generalized eigenvectors with 
+exponent $1$. Not all eigenvectors are generalized eigenvectors. 
+For example, the matrix
+\[
+M \defeq
+\left(
+\begin{matrix}
+2 & 1 & 0\\
+0 & 2 & 1\\
+0 & 0 & 2
+\end{matrix}
+\right)
+\]
+have three generalized eigenvectors with eigenvalue $2$: the column
+vectors $\mathbf{e}_1 \defeq (1, 0, 0), \mathbf{e}_2 \defeq (0, 1, 0)$, 
+and $\mathbf{e}_3 \defeq (0, 0, 1)$. However, $M\mathbf{e}_1 = 
+2\mathbf{e}_1 + \mathbf{e}_2$, so $\Vbf{e}_1$ is not an eigenvector. In fact, $M$ 
+has a generalized eigenvector of exponent $3$ ($\mathbf{e}_1$),
+and a generalized eigenvector of exponent $2$ ($\mathbf{e}_2$),
+and only one eigenvector ($\mathbf{e}_3$).
+
+Notice that in this example, $M - 2I$ is the matrix
+\[
+\left(
+\begin{matrix}
+0 & 1 & 0\\
+0 & 0 & 1\\
+0 & 0 & 0
+\end{matrix}
+\right).
+\]
+So $(M - 2I)^2$ is the matrix
+\[
+\left(
+\begin{matrix}
+0 & 0 & 1\\
+0 & 0 & 0\\
+0 & 0 & 0
+\end{matrix}
+\right),
+\]
+and $(M - 2I)^3 = 0$. That is, a power of $(M - 2I)$ is 0, i.e.
+$(M - 2I)$ is nilpotent, which we define below:
+
+\begin{defn}\label{def:nilpotent_operators}
+Let $T: V \to V$ be a linear operator. We say that $T$ is nilpotent
+if a power of $T$ is zero (comes from Greek \emph{nil} = zero, 
+\emph{potent} = power). That is, $T^r : V \to V$ is identically 
+$0$ for some positive integer $r$.
+\end{defn}
+
+In other words, $M - 2I$ is nilpotent. Furthermore, the generalized
+eigenvectors of $M$ are also the generalized eigenvectors of $M - 2I$.
+This is quite straightforward: $M - 2I$ is a matrix with 
+eigenvalue $0$. Finally, in this case, the generalized eigenvectors
+form a basis of $\C^3$. The fact that they do is not a coincidence, as
+explained by the following lemma:
+
+\begin{lem}\label{lem:gen_eigen_basis}
+Let $v$ be a generalized eigenvector of a nilpotent matrix $M$, and
+let $u_i \defeq M^i(v)$ be the image of $v$ under the $i$-th power of 
+$M$.\footnote{You asked about what to call $M^i(v)$.
+It depends. You can say the ``$i$-th power of $M$'' or, if you are regarding
+$M$ as an operator, the ``$i$-th iteration of $M$.''} Then the vectors $v, u_1,
+\cdots,u_{d - 1}$ ($d$ is the exponent of $v$) are linearly 
+independent, and define the basis of a vector space $V$ for which 
+$MV \subseteq V$.
+\end{lem}
+\begin{proof}
+Let $u_0 = v$ and let $V \defeq \Span\{u_0, u_1,\dots,u_{d - 1}\}$.
+(Notice here that $u_d = M^d(v) = 0$ since the exponent of $v$ is
+$d$.)
+
+Let $v$ be some vector $V$. By definition $v$ is a linear 
+combination of the $u_i$'s, i.e. $v = a_0u_0 + a_1u_1 +\cdots+
+a_{d - 1}u_{d - 1}$
+Then
+\[
+Mv = M(a_0u_0 + \cdots a_{d - 1}u_{d - 1}) = a_0u_1 + \cdots + a_{d - 2}u_{d - 1}.
+\]
+So, $Mv \in V$, and therefore $MV \subset V$.
+
+To see that $u_0,\dots,u_{d - 1}$ is linearly independent, suppose
+for a contradiction that the vectors are \emph{not}, i.e.
+\begin{equation}\label{eq:lem_gen_eigen_basis}
+a_0u_0 + a_1u_1 + \cdots + a_nu_n = 0,
+\end{equation}
+and suppose $k$ is the smallest integer such that $a_k \neq 0$.
+Then applying $M^{d - k - 1}$ to \eqref{eq:lem_gen_eigen_basis},
+we have,
+\[
+0 = M^{d - k - 1}0 = M^{d - k - 1}(a_ku_k + \cdots + a_{d - 1}u_{d - 1}).
+\]
+But if $i > k$, then $d - k - 1 + i \geq d$, so $M^{d - k - 
+1}(u_i) = M^{d + i - 1}v = 0$ (since $M^d(v) = 0$). It follows
+that $M^{d - k - 1}(a_ku_k + \cdots + a_nu_n) = a_ku_{d - 1}$,
+but this contradicts the fact that $u_{d - 1}$ is not $0$ (since 
+otherwise, $v$ would have an exponent strictly less than $d$). 
+Therefore, $u_0, \dots,u_{d - 1}$ is linearly independent. Since the
+dimension of $V$ is exactly $d$, $\{u_0,\dots,u_{d - 1}\}$ forms 
+a basis. The lemma is established.
+\end{proof}
+
+\begin{defn}
+Let $T: V \to V$ be a linear operator. An \DEF{$T$-invariant 
+subspace} $W$ of $V$ is a vector subspace for which $T(W) 
+\subseteq W$. 
+\end{defn}
+
+Applying the lemma to the language of linear operators, we get
+the following:
+
+\begin{lem}
+Let $T: V \to V$ be a linear operator. Suppose $v$ is a 
+generalized eigenvector of $T$ with eigenvalue $\lambda$ and
+exponent $d$. Define $u_i \defeq (T - \lambda I)^i(u)$. Then $V 
+\defeq \Span\{v,u_1, u_2,\dots,u_{d - 1}\}$ is a $T$-invariant
+subspace of $V$ with basis given by $\{v, u_1, u_2,\dots,
+u_{d - 1}\}$.
+\end{lem}
+\begin{proof}
+The proof here is almost identical to that of the previous lemma.
+Let me walk you through the arguments, and you can fill in the 
+details if you like:
+
+Set $u_0 \defeq v$.
+
+\begin{enumerate}
+\item Verify that $T(u_i) = \lambda u_i + u_{i + 1}$ for $i < d - 1$
+and $T(u_{d - 1}) = \lambda u_{d - 1}$.
+
+\item Prove from (1) that $W = \Span(u_0,\dots,u_{d - 1})$ is an
+$T$-invariant subspace of $V$.
+
+\item Show that $u_0,\dots,u_{d - 1}$ is linearly independent:
+proceed as follows, assume for a contradiction that $a_0u_0 + 
+\cdots + a_{d - 1}u_{d - 1} = 0$ and there exists some $k$ such
+that $a_k \neq 0$ and assume, further, that $k$ is the smallest
+such index. Duplicate the argument from the previous lemma 
+to show that $a_k u_{d - 1} = 0$.
+\end{enumerate}
+\end{proof}
+
+The following lemma may also be useful:
+
+\begin{lem}\label{lem:eigenvector_always_exists}
+For every eigenvalue $\lambda$ of a linear transformation $T: V 
+\to V$, there exists an \emph{eigenvector} $v$ for $T$ of
+eigenvalue $\lambda$.
+\end{lem}
+\begin{proof}
+Notice that the determinant of $T - \lambda I$ is $0$. This means 
+that the linear operator $T - \lambda I$ has a kernel (a.k.a nullspace)
+of \emph{strictly positive} dimension. In particular, the kernel
+is not $0$, and therefore, we can choose a vector $v$ in the
+kernel. But $(T - \lambda I)(v) = 0$, i.e. $Tv = \lambda v$. 
+So $v$ is the desired eigenvector.
+\end{proof}
+
+We will proceed a little differently than Artin. Let us first 
+prove the statement of Theorem \ref{thm:JCF} for a linear operator 
+$T$ that has $0$ as its only eigenvalue. The following lemma
+characterizes $T$:
+
+\begin{lem}\label{lem:nilpotent_equiv_zero_eigenvalue}
+Let $V$ be an $n$-dimensional vector space. Then a linear operator 
+$T: V \to V$ is nilpotent if and only if $T$ has $0$ as its only 
+eigenvalue.
+\end{lem}
+\begin{proof}
+If $T$ is nilpotent, then by definition $T^r = 0$, for some positive
+integer $r$. Let $\lambda$ be some eigenvalue of $T$. By Lemma 
+\ref{lem:eigenvector_always_exists}, we see that there always exists
+an eigenvector $v$. Hence, we have that $T(v) = \lambda v$, and, by
+iterating, $T^r(v) = \lambda^r v$. But $T^r = 0$, so $\lambda^r = 0$.
+Since $\lambda \in \C$, this can only happen if $\lambda = 0$. 
+Therefore, all eigenvalues of $T$ are $0$.
+
+The converse is not as straightforward. Assume that $0$ is the only
+eigenvalue of $T$. We will show that $T^n$ (where $n$ is the dimension
+of $V$) is $0$.
+
+To do so, let us look at the image of $V$ under $T$. The
+way $T$ acts, it sends some vectors of $V$ to $0$ and others to 
+nonzero vectors. Since $T$ has an eigenvalue $0$, by Lemma 
+\ref{lem:eigenvector_always_exists}, there is at least one nonzero
+vector $v$ such that 
+$T(v) = 0v = 0$. Since the image of vector spaces under linear
+transformations are vector spaces, $T(V)$ is a vector space,
+and by what we have just argued, the dimension of $T(V)$ is 
+strictly less than the dimension of $V$.
+
+We want to apply the same arguments as in the preceding paragraph 
+to show that $T(T(V))$ is a vector subspace with strictly smaller 
+dimension than $T(V)$. To do this, we must first show that 
+restricting $T$ to $T(V)$ is a linear operator from $T(V)$ to 
+$T(V)$, i.e. the image of $T(V)$ under $T$ is contained in $T(V)$,
+but that is obvious: any $v$ in $T(V)$ is a vector of $V$, so
+$T(v)$ is an element of $T(V)$.
+
+Reasoning as we did, we see that $T(T(V))$ is a vector subspace
+of $T(V)$ (which in turn is a vector subspace of $V$) with dimension
+strictly less than the dimension of $T(V)$. Continuing, we obtain
+a tower of subspaces:
+\[
+V \supsetneq T(V) \supseteq T^2(V) \supsetneq \cdots
+\]
+where $\dim T^{i + 1}(V) < \dim T^i(V)$, i.e. every time you apply 
+$T$ to $T^i(V)$, the dimension of the image drops by at least $1$. 
+But the dimension of $V$ is $n$, and there is only so many times
+$n$ can decrease by at least $1$ before the result is $0$. In
+fact, $T^n(V)$ must necessarily be $0$. This means that $T^n(v) = 0$
+for all vectors $v$ in $V$. In particular, this shows that $T$ is
+nilpotent.
+\end{proof}
+
+There are actually a large class of nilpotent matrices: these are
+the matrices where the only nonzero entries are contained in the 
+strictly upper triangle, i.e. $M_{ij} = 0$ for all $j \leq i$. 
+For example,
+\[
+M = \left(
+\begin{matrix}
+0 & 2 & 0 & 4\\
+0 & 0 & 1 & 0\\
+0 & 0 & 0 & -1\\
+0 & 0 & 0 & 0
+\end{matrix}
+\right)
+\]
+is an example of one such matrix, and $M$ is nipotent, since $M^4 
+= 0$. To see that these matrices are all
+nilpotent, we need only to observe that the eigenvalues of upper 
+triangular matrices are precisely their diagonal entries. In this
+case, the diagonal entries are all $0$, so the matrix has $0$ as
+its only eigenvalue. The previous lemma applies to conclude that
+$M$ is nilpotent.
+
+Another large class of nilpotent matrices are those whose nonzero 
+entries lie in the strictly lower triangle. The reasoning why
+these are nilpotent is identical to those of the strictly upper 
+triangular matrices.
+
+We now prove Theorem \ref{thm:JCF} for nilpotent linear operators.
+
+\begin{thm}\label{thm:nilpotent_JCF}
+If $T: V \to V$ is a nilpotent linear operator, then there exists a 
+basis of $V$ such that the matrix representation of $T$ is in Jordan
+canonical form, where each Jordan block has $0$ for diagonal entries.
+\end{thm}
+
+This is Steps 3 and 4 of Theorem 4.7.10 in Artin.
+
+\begin{proof}
+We proceed by induction on the dimension of $V$. If the dimension 
+of $V$ is $1$, then $T$ must act trivially on $V$, since $T$ has 
+at least one eigenvector of eigenvalue $0$. So $T = 0$, and 
+therefore any basis of $V$ will do: the matrix is $0$, which is 
+obviously in Jordan canonical form.
+
+Now suppose the lemma holds for all vector spaces of dimension
+$n - 1$, and let $V$ be vector space of dimension $n$ with a 
+nilpotent linear operator $T: V \to V$. Furthermore, let $K$ be
+the kernel of $T$ and $W = T(V)$ be the image. Since all eigenvalues
+are $0$, by Lemma \ref{lem:eigenvector_always_exists}, there 
+exists at least one nonzero vector $v$ in $V$ such that $T(v) = 0$.
+In particular, $K$ is nontrivial, i.e. $\dim K \geq 1$. Since 
+$\dim V = \dim K + \dim W$, we see that $\dim W < \dim V$. Suppose
+$\dim W = m$.
+
+But $W$ is a $T$-invariant subspace. This is because if $w \in W$, 
+then obviously $w \in V$, and so $T(w)$ is an element of $T(V) = 
+W$. The restriction of $T$ to $W$ is a linear operator from $W$
+to $W$. It is again nilpotent. So by the induction hypothesis, 
+there exists a basis $\mathbf{B}_W$ such that the matrix $M$
+representing $T|_W$ is a block diagonal matrix where the
+$i$-th block is a $k_i \times k_i$ matrix
+\[
+A_i \defeq
+\left(
+\begin{matrix}
+0 & 1 & 0 & \cdots & 0\\
+0 & 0 & 1 & \cdots & 0\\
+0 & 0 & 0 & \ddots & 0\\
+0 & 0 & 0 & \cdots & 1\\
+0 & 0 & 0 & \cdots & 0
+\end{matrix}
+\right).
+\]
+
+What does this mean? To understand this, suppose first that 
+$M$ consists of only one block of $m \times m$ matrix. If this is 
+the case, then there exists a basis $\{w_1,\dots,w_n\}$ such that 
+\begin{align*}
+T(w_1) &= w_2\\
+T(w_2) &= w_3\\
+\cdots\\ 
+T(w_m) &= 0,
+\end{align*}
+This is because the coefficient of $T(w_i)$ with respect to this
+basis is determined by multiplication with the matrix $M$.
+
+If $M$ consisted of two blocks, then the basis can be divided into
+two groups $\{w_1,\dots,w_k; w_1',\dots,w_{m - k}'\}$ where
+\begin{align*}
+T(w_1) &= w_2\\
+\cdots\\
+T(w_{k - 1}) &= w_k\\
+T(w_k) &= 0
+\end{align*}
+and 
+\begin{align*}
+T(w_1') &= w_2'\\
+\cdots\\
+T(w_{k - 1}') &= w_k'\\
+T(w_k') &= 0
+\end{align*}
+
+In general, if there are $r$ blocks, then the basis of $W$ can be 
+divided into $r$ groups, $\{w_{1,1},\dots,w_{1,k_1};\cdots;w_{r,1},
+\dots,w_{r,k_r}\}$ such that $T(w_{i,j}) = w_{i,j + 1}$ for 
+$j < k_i$, and $T(w_{i,k_i}) = 0$. It is easy to see that there is
+one vector $w_{i, 1}$ for each block whose image under $T$ generates
+the rest of the basis for the rest of the block. This vector is 
+generalized eigenvector of $T$, with exponent $k_i$.
+
+Returning to the proof for the case where $M$ consists of $r$ 
+blocks, pick out the $w_{i,1}$, $i = 1,\dots,r$. Since $w_{i, 1}$
+is a vector in $W = T(V)$, there is some $v_i$ such that $T(v_i) 
+= w_{i, 1}$. Obviously $v_i$ is also a general eigenvector of $T$,
+and if $w_{i, 1}$ has exponent $k_i$, then $v_i$ has exponent
+$k_i + 1$. 
+
+We claim that the vectors $v_i, w_{i, 1},\dots, w_{i, k_i}$ for
+$i = 1,\dots,r$ generate a basis of some $T$-invariant subspace 
+$V'$ of $V$ such that the associated matrix representation of $T$ 
+restricted to $V'$ is in Jordan canonical form with $0$'s on the 
+diagonal.
+
+To see that $\{v_i,w_{i,1},\dots,w_{i,k_i}\}_{i = 1,\dots,r}$ is
+linearly independent, assume we have a linear relation 
+\begin{equation}\label{eq:linear_relation}
+\sum_{i = 1}^r a_iv_i + \sum_{j = 1}^{k_i} a_{i,j}w_{i,j} = 0.
+\end{equation}
+We want to show that all coefficients are $0$. To do so, apply
+$T$ to the above equation, and since $T(v_i) = w_{i, 1}$, we have
+a relation involving only $w_{i, j}$. But these form a basis of
+$W$ and are therefore linearly independent. It follows, in 
+particular, that all the coefficients for $v_i$ must be $0$:
+$a_i = 0$ for $i = 1,\dots,r$.
+
+This reduces \eqref{eq:linear_relation} to a linear relation 
+involving only $w_{i,j}$'s. But, as we have mentioned, these are
+a basis for $W$, and therefore, all coefficients in must be $0$.
+It follows that $\{v_i, w_{i, k_i}\}_{i = 1,\dots,r}$ is linearly
+independent and span, as basis, of some vector subspace of $V$.
+For each $i$, $v_i,w_{i, 1},\dots,w_{i, k_i}$ satisfies the 
+conditions of Lemma \ref{lem:gen_eigen_basis}, and it follows
+that $V'$ is $T$-invariant.
+
+The important point is that $T$ restricted to $V'$ with the basis
+\[
+\{v_i; w_{i,1},\dots,w_{i,k_i}\}_{i = 1,\dots,r}
+\]
+is in Jordan canonical form. To see this, fix some $i$, and look 
+at the action of $T$ on the basis:
+\begin{align*}
+T(v_i) &= w_{i,1}\\
+T(w_{i,1}) &= w_{i,2}\\
+T(w_{i,2}) &= w_{i,3}\\
+\cdots \\
+T(w_{i,{k_i}} &= 0
+\end{align*}
+Therefore, with respect to $\{v_i, w_{i,1},\dots,w_{i,k_i}\}$,
+$T$ acts as the $(k_i + 1) \times (k_1 + 1)$ Jordan block:
+\[
+A_i \defeq
+\left(
+\begin{matrix}
+0 & 1 & 0 & \cdots & 0\\
+0 & 0 & 1 & \cdots & 0\\
+0 & 0 & 0 & \ddots & 0\\
+0 & 0 & 0 & \cdots & 1\\
+0 & 0 & 0 & \cdots & 0
+\end{matrix}
+\right).
+\]
+This holds for all $i$, and it is easy to see that the associated
+matrix $M$ with respect to the entire basis is the block diagonal
+\[
+\left(
+\begin{matrix}
+A_1 &0      &\cdots &0 \\
+0   &A_2    &\cdots &0 \\
+0 &0 &\ddots &0 \\
+0   &0   &\cdots &A_k
+\end{matrix}
+\right).
+\]
+
+At this point, we need to show that the basis 
+$\{v_i,w_{i,1},\dots,w_{i,k_i}\}$ can be extended to a basis
+for $V$ such that the matrix form for $T$ is in Jordan canonical
+form. (This is Step 4 of the proof.)
+
+It is easy to see that $T(V') = W$ (since each basis $w_{i,j}$ is in the
+image of the basis of $V'$.) Notice that $w_{i,k_i}$ for $i = 1,\dots,
+r$ are objects in the kernel, since $T(w_{i,k_i}) = 0$ for all
+$i$. In fact, if $T(v) = 0$ for some $v \in V'$, then $v$ is in
+the span of these vectors. This follows from the fact that if 
+$T(w_{i,j}) = 0$ precisely when $j = k_i$. Then, if
+\[
+v = \sum_{i = 1}^r a_iv_i + \sum_{j = 1}^{k_i}a_{i,j}w_{i,j}
+\]
+we have that
+\[
+T(v) = \sum_{i = 1}^r a_iw_{i,1} + \sum_{j = 2}^{k_i} a_{i, j-1}w_{i,j}.
+\]
+Since $\{w_{i,1},\dots,w_{i,k_i}\}_{i = 1,\dots,r}$ form a basis
+we see that $a_i = a_{i,j} = 0$ for $j \neq k_i$. It follows that
+$v = a_{1,k_1}w_{1,{k_1}} + \cdots + a_{r,{k_r}}w_{r,{k_r}}$, so $v 
+\in \Span\{w_{i,{k_i}}\}_{i = 1,\dots,r}$.
+
+Since the vectors $\{w_{i,{k_i}}\}$ are part of a basis of $W$, they are linear
+independent. We extend these to a basis for the kernel $K$: let $\{z_1,\dots,z_l;
+w_{1,k_1}, \dots,w_{r,k_r}\}$ be a basis for $K$, and let $K'$ be
+the subvector space generated by $\{z_1,\dots,z_l\}$. We want to show
+that $K' \cap V' = 0$.
+
+To do so, suppose $v \in K' \cap V'$. Then $T(v) = 0$ (because $v$ is
+in $K'$ which is a subspace of the kernel $K$). But by the remarks
+above, $v \in V'$ means that $v$ can be written as a linear combination of the vectors
+$w_{i,k_i}$ for $i = 1,\dots,r$; but $v$ in $K'$ means that $v$ can be
+written as a linear combination involving only $z_1,\dots,z_l$. But $\{w_{1,k_1},\dots, 
+w_{r,k_r}; z_1,\dots,z_l\}$ are linearly independent, the fact that $v$ can
+be written two ways --- one using only the $w_{i,j}$'s and one using only
+$z_i$'s --- imply that $v$ must in fact be $0$ (and that there is only one
+way to write $v$).
+
+Next, we claim that $V = V' \oplus K'$. To see this, fix $v$ in $V$,
+and it is easy to see that $T(v) \in T(V) = W$. This means that there exists
+some $v'$ in $V'$ such that $T(v') = T(v)$. But the fact that $T$ is linear
+implies that $T(v - v') = T(v) - T(v') = 0$. This implies that $v - v'$ is
+in the kernel. This further implies that $v - v'$ can be written as a linear
+combination of $\{w_{1,k_1},\dots,w_{r,k_r};z_1,\dots,z_l\}$, i.e. as a 
+combination of some element in $V'$ (using $w_{i,k_i}$'s) and some element in
+$K'$ (using $z_j$'s). Since $V = V' + K'$, and $V' \cap K' = 0$, it follows that $V = V' \oplus K'$,
+In particular, the set of vectors
+\[
+\mathbf{B} \defeq \{v_1,\dots,v_r;w_{1,1},\dots,w_{r,k_r}; z_1,\dots,z_l\}
+\]
+is a basis for $V$ (since $v_i,w_{i,j}$ form a basis for $V'$ and $z_1,\dots,z_l$
+is a basis for $K'$.
+
+Lastly (and believe it or not, this is the easy part), we claim that $T$
+with respect to $\mathbf{B}$ is in Jordan canonical form. We already know
+that $T$ is in Jordan canonical form on $V'$ with respect to 
+$\{v_i, w_{i,1},\dots,w_{i,{k_i}}\}_{i = 1,\dots,r}$. It suffices to
+check that the matrix representing $T$ is in Jordan Canonical form with
+respect to the basis $z_1,\dots,z_l$. But $z_1,\dots,z_l$ are in the kernel,
+and therefore, $T(z_i) = 0$ for all $i$. In particular, the Jordan block
+corresponding to $\{z_1,\dots,z_l\}$ is the $0$ matrix.
+
+The theorem is established.
+\end{proof}
+
+The following is a straightforward consequence of the previous
+theorem:
+
+\begin{cor}\label{cor:single_eigenvalue_JCF}
+If $T: V \to V$. If $T$ exhibits only a single eigenvalue, then
+there exists a basis for $V$ for which the associated matrix of
+$T$ is in Jordan Canonical Form.
+\end{cor}
+\begin{proof}
+If $T$ has only a single eigenvalue $\lambda$, then $T - \lambda I$
+would be a nilpotent matrix (since all its eigenvalues are 0). It 
+then follows from Theorem \ref{thm:nilpotent_JCF} that there exists 
+some basis of $V$ such that $T - \lambda I$ is in Jordan canonical form.
+But if the matrix associated with $T - \lambda I$ is in Jordan canonical
+form, then so is the matrix associated with $T$.
+\end{proof}
+
+Now, we prove Theorem \ref{thm:JCF} in its full generality. Given 
+$T: V \to V$, we begin by decomposing $V$ into a direct sum of 
+eigen subspaces. Let us first consider what we mean by ``eigen subspace'':
+
+\begin{lem}
+Let $T: V \to V$ be a linear operator, and let $\lambda$ be an eigenvalue
+of $T$. Let $W$ be the set of generalized eigenvectors. Then $W 
+\cup \{0\}$ form a vector space.
+\end{lem}
+\begin{proof}
+The three items that we need to verify are:
+\begin{enumerate}
+\item $0 \in W$,
+
+\item $v \in W$, then $av \in W$ for all $a \in \C$,
+
+\item $v, w \in W$, then $v + w \in W$.
+\end{enumerate}
+
+(1) is by construction. For (2), assume $(T - \lambda I)^r(v) = 0$.
+But by linearity of $(T - \lambda I)^r$, $(T - \lambda I)^r(av) =
+a(T - \lambda I)^r(v) = 0$. It follows that $av \in W$.
+
+For (3), suppose $(T - \lambda I)^r(v) = (T - \lambda I)^s(w) = 0$.
+Then $(T - \lambda)^{r + s}(v + w) = (T - \lambda I)^{r + s}(v) +
+(T - \lambda I)^{r + s}(w) = 0 + 0 = 0$.
+\end{proof}
+
+The preceding lemma allows us to define the following:
+
+\begin{defn}\label{def:eigenspace}
+Given $T: V \to V$ and $\lambda$ an eigenvalue of $T$,
+tet $W$ be the collection of all generalized eigenvectors of 
+$\lambda$. Let $V_{\lambda}$ denote $W \cup \{0\}$. We say
+$V_{\lambda}$ is \DEF{the eigen-subspace of $V$ (associated to
+the eigenvalue $\lambda$)}.
+\end{defn}
+
+Given $T$, the eigensubspaces of $V$ breaks $V$ up into a direct sum of
+$T$-invariant subspaces. This statement is clarified and proven
+in the next two lemmas:
+\comment{
+\begin{lem}
+Let $T: V \to V$ be a linear operator with two distinct eigenvalues
+$\lambda_1$ and $\lambda_2$. Let $V_1$ and $V_2$ be the eigen-subspaces
+associated to $\lambda_1$ and $\lambda_2$ respectively. Then
+$V_1 \cap V_2 = 0$. In particular, $V_1 \oplus V_2$ form a vector
+subspace of $V$.
+\end{lem}
+\begin{proof}
+The idea here is that a single vectors cannot have two 
+associated eigenvalues. We will prove the lemma by showing that
+if we have an generalized eigenvector belonging to two distinct
+eigensubspaces, then we can derive one vector with two distinct
+eigenvalues.
+
+Notice that both $T$ and $\lambda I$ commutes with 
+$(T - \lambda_1 I)$, i.e. $T(T - \lambda_1 I) = (T - \lambda_1 
+I)T$, and $\lambda_2 I(T - \lambda_1 I) = (T - \lambda_1 I)$.
+In particular, $(T - \lambda_1 I)(T - \lambda_2 I) =
+(T - \lambda_2 I)(T - \lambda_1 I)$, and inductively, we can
+show that $(T - \lambda_1 I)^r (T - \lambda_2 I)^s =
+(T - \lambda_2 I)^s (T - \lambda_1 I)^r$.
+
+Now suppose for a contradiction that $v$ is a generalized
+eigenvector for both $\lambda_1$ and $\lambda_2$, with exponents
+$r + 1$ and $s + 1$ respectively. That is, 
+$(T - \lambda_1 I)^(r + 1)(v) = 0$, but $(T - \lambda_1 I)^r(v) \neq 0$.
+Write $v' \defeq (T - \lambda_1 I)^r(v)$. As constructed,
+$v' \neq 0$, and $(T - \lambda_1 I)(v') = (T - \lambda_1)^{r + 1}(v) = 0$.
+In other words, $v'$ is an eigenvector associated with the eigenvalue
+$\lambda_1$.
+
+Notice that $v'$ is still a generalized eigenvector with eigenvalue
+$\lambda_2$: 
+\begin{align*}
+(T - \lambda_2 I)^{s + 1}(v') 
+   &= (T - \lambda_2)^{s + 1}(T - \lambda_1)^r(v) \\
+&= (T - \lambda_1)^r (T - \lambda_2)^{s + 1}(v) \\
+&= (T - \lambda_1)^r(0)\\
+&= 0.
+\end{align*}
+But this is a contradiction. Here's why. Since $T(v') = \lambda_1 v'$, so
+$(T - \lambda_2 I)(v') = (\lambda_1 - \lambda_2)v'$. Since
+In particular, $(T - \lambda_2 I)^{s + 1}(v) = 
+(\lambda_1 - \lambda_2)^{s + 1}(v')$. Since $\lambda_1 \neq \lambda_2$,
+$(\lambda_1 - \lambda_2) \neq 0$, and so $(\lambda_1 - \lambda_2)^{s + 1} \neq 0$.
+How can a nonzero number scaling a nonzero vector result in a zero vector?
+This can't happen. Therefore, no such $v'$ exists, and more importantly, no
+such $v$ exists. In particular, $V_1 \cap V_2 = 0$.
+\end{proof}
+}
+
+\begin{lem}\label{lem:V_decomposes}
+Let $T: V \to V$ be a linear operator, and $\lambda$ is an 
+eigenvalue of $T$. Let $V_\lambda$ denote the eigensubspace of $V$ 
+associated with $\lambda$. Then $V = V_\lambda \oplus V'$ where 
+both $V_\lambda$ and $V'$ are $T$-invariant subspaces of $V$.
+\end{lem}
+\begin{proof}
+We first show that $V_\lambda$ is a $T$-invariant subspace.
+Fix $v \in V_\lambda$. Then $(T - \lambda I)v$ is also a generalized
+eigenvector of eigenvalue $\lambda$, since $(T - \lambda I)^r(v) = 0$ implies
+$(T - \lambda I)^{r - 1}((T - \lambda I)v) = 0$. Similarly, $\lambda v$
+is also a generalized eigenvector of eigenvalue $\lambda$. That means
+$(T - \lambda I)(v), \lambda v \in V_\lambda$. But $V_\lambda$ is a vector
+space. But $T(v) = (T - \lambda I)(v) + \lambda v$, so $T(v)$ is a
+vector in $V_\lambda$ as well. What this show is $T(V_\lambda)
+\subseteq V_\lambda$. In particular, we can restrict $T$ to a linear
+operator on $V_\lambda$.
+
+We next show that $V$ splits as a direct sum of $V_\lambda$ and 
+some $V'$. To see this, notice that $T - \lambda I$ acts on 
+$V_\lambda$ as a nilpotent operator. Indeed, the only eigenvalue
+of $T - \lambda I$ on $V_\lambda$ is $0$. By Lemma
+\ref{lem:nilpotent_equiv_zero_eigenvalue}, $T - \lambda$ is
+nilpotent. Therefore, $(T - \lambda)^r = 0$ on $V_\lambda$.
+
+The fact that $(T - \lambda I)^r$ is the $0$ linear operator 
+on $V_\lambda$ does not imply $(T - \lambda I)^r$ is $0$ on
+all of $V$. Let $V' = (T - \lambda I)^r(V)$. We want to show that
+$V = V_\lambda \oplus V'$. 
+
+First, we show that $V_\lambda$ is equal to the kernel of $(T - \lambda I)^r$.
+Certainly $V_\lambda$ is contained in the kernel (everything in
+$V_\lambda$ is sent to 0 by $(T - \lambda I)^r$). Suppose we have
+a vector $v$ in the kernel. Then by definition, $(T - \lambda I)^r(v)
+= 0$. So $v$ is a generalized eigenvector of eigenvalue $\lambda$,
+so $v \in V_\lambda$. Thus, $V_\lambda = \ker (T - \lambda I)^r$.
+
+Next, we show that $V' \cap V_\lambda = 0$. To see this, fix some
+vector $v$ in the intersection $V' \cap V_\lambda$. We know that
+$V' = (T - \lambda I)^r(V)$, so $v = (T - \lambda I)^r(v')$ for
+some vector $v'$. The fact that $v \in V_\lambda$ implies that
+$(T - \lambda I)^s(v) = 0$ for some $s$. Then $(T - \lambda I)^{s + r}(v')
+= 0$, and so $v' \in V_\lambda$. But every vector in $V_\lambda$
+is sent to $0$ via $(T - \lambda I)^r$. Therefore, $v = (T - \lambda I)^r(v')
+= 0$.
+
+From this, we know that $V' \oplus V_\lambda$ is well-defined
+and is a subspace of $V$.
+
+Finally, $V = V' \oplus V_\lambda$: this follows from a dimension
+argument. We know that the dimension of $V$ is equal to the
+dimension of the rank plus the dimension of nullity:
+$\dim V = \dim \ker (T - \lambda I)^r + \dim \im (T - \lambda I)^r$,
+and $\ker (T - \lambda I)^r = V_\lambda$, $\im (T - \lambda I)^r =
+V'$. Therefore, $V' \oplus V_\lambda$ is a subspace of $V$ of the same
+dimension as $V$. Thus $V = V' \oplus V_\lambda$.
+
+Finally, we want to show that $V'$ is also a $T$-invariant 
+subspace of $V$, i.e. $T(V') \subseteq V'$. Let $v$ be a nonzero
+vector of $V'$. Then $v = (T - \lambda I)^r(v')$ for some $v'$ in
+$V$. In particular, 
+\[
+(T - \lambda I)(v) = (T - \lambda I)^{r + 1}(v') = (T - \lambda I)^{r}((T - \lambda I)(v'))
+\]
+so $(T - \lambda I)(v)$ is also an element of $V'$. But
+$\lambda v$ is also an element of $V'$, because $V'$ is a linear
+subspace. Therefore $T(v')$ is also an element of $V'$.
+That is, $T(V') \subset V'$, and $V'$ is $T$-invariant.
+\end{proof}
+
+\begin{lem}\label{lem:V_splits_up}
+Given a linear operator $T: V \to V$. Then $V$ splits up as a direct
+sum of its eigensubspaces $V_\lambda$:
+\[
+V = \bigoplus_{\lambda\;\mathrm{eigenvalue}} V_\lambda.
+\]
+\end{lem}
+\begin{proof}
+We proceed by induction on the dimension of $V$. The case
+$\dim V = 1$ is straightforward. If $V$ is one-dimensional, then
+$T$ acts by scaling (by $\lambda$, say). Then $V = V_\lambda$,
+which is a direct sum in a degenerate sense of the word (because
+there is no other summand).
+
+Now assume $\dim V = n$, and all smaller dimensional vector spaces
+split up. Let $\lambda$ be an eigenvalue of $T$. By Lemma 
+\ref{lem:eigenvector_always_exists}, there is an eigenvector $v$ of
+$V$ with eigenvalue $\lambda$ and so $V_\lambda$ is nontrivial, i.e.
+$\dim V_\lambda \geq 1$ (since eigenvectors are generalized
+eigenvectors). By Lemma \ref{lem:V_decomposes}, we see that
+$V = V_\lambda \oplus V'$ for some $T$-invariant subspace $V'$. In
+particular, $V'$ has strictly smaller dimension than $V$.
+Restricting $T$ to $V'$ and using the inductive hypothesis, we see
+that $V'$ splits up as a direct sum of $T$-eigensubspaces:
+\[
+V' = \bigoplus_{\lambda' \textrm{ eigenvalues}} V_{\lambda'}.
+\]
+Since every eigenvalue of $T$ on $V'$ is an eigenvalue of
+$T$ on $V$, $V$ splits up as well:
+\[
+V = V_\lambda \oplus \bigoplus_{\lambda' \textrm{ eigenvalues of }V'}
+V_{\lambda'}
+= \bigoplus_{\lambda \textrm{ eigenvalues}} V_\lambda.
+\]
+\end{proof}
+
+We now complete the proof Theorem \ref{thm:JCF}:
+
+\begin{proof}[Proof of Thm. \ref{thm:JCF}]
+The first observation that we make is this: if $V$ is the direct sum
+of $T$-invariant subspaces $V_i$, and if there is a basis on each
+$V_i$ such that the matrix representation of the restriction of 
+$T$ to $V_i$ is in Jordan canonical form, then $V$ has a basis such
+that the matrix of $T$ is in Jordan canonical form. This basis is
+simply given by the union of the basis of each $V_i$. With this
+observation in mind, we proceed as follows:
+
+By Lemma \ref{lem:V_splits_up}, we can write $V$ as a direct
+sum of $T$-invariant subspaces:
+\[
+V = \bigoplus_{\lambda \textrm{ eigenvalues}} V_\lambda.
+\]
+As shown in Lemma \ref{lem:V_decomposes}, $V_\lambda$ is $T$-invariant.
+Furthermore, the restriction of $T$ to $V_\lambda$ has only a single
+eigenvalue. Therefore, by Corollary \ref{cor:single_eigenvalue_JCF},
+there is a basis of $V_\lambda$ such that the matrix of 
+$T|_{V_{\lambda}}$ is in Jordan canonical form. The theorem is now
+established by the opening remarks of the proof.
+\end{proof}
+
+Now, let's answer the question: what can I know about the JCF
+of a matrix $M$ if I know its characteristic polynomials? Answer:
+a little bit, but not that much. I claimed in my email that
+if the characteristic polynomial is 
+\[
+\chi(x) = (x - \lambda_1)^{d_1}(x - \lambda_2)^{d_2} \cdots (x - 
+   \lambda_k)^{d_k}
+\]
+then the number of equivalent matrices\footnote{two matrices are
+equivalent if you can conjugate one into the other, i.e. $M$ and $M'$ are
+equivalent if there exists an invertible matrix $P$ such that
+$M = P^{-1}M'P$. Since a matrix is equivalent to some matrix in Jordan canonical form,
+two matrices are equivalent if they are equivalent to the same matrix in 
+Jordan canonical form.} with the same characteristic
+polynomial is in fact the product $U(d_1)U(d_2)\cdots U(d_k)$,
+where $U(n)$ is the number of unordered partitions of the number $n$.
+Let me explain what this means:
+
+\begin{defn}
+A partition of the integer $n$ is a sequence of \emph{positive} numbers
+$p_1,p_2,\dots,p_k$, such that $p_1 + p_2 + \cdots + p_k = n$. A partition
+is unordered if we do not care about the ordering in the sequence.
+\end{defn}
+
+For example, there are $3$ different unordered partitions of
+the number $3$: $1 + 1 + 1$, $1 + 2$, $3$. (If we care about
+order, then there are $4$, since we can also write $3 = 2 + 1$
+which is a different sequence because the order is different).
+
+Let me now prove the claim I made about the number of equivalent
+matrices. To save you the daunting task of reading through all of
+this, I will state the following without proof:
+
+\begin{lem}
+Let $\chi(x) = \prod_i (x - \lambda_i)^{d_i}$ be the characteristic
+polynomial of a matrix $M$. Then the dimension of eigenspace with
+eigenvalue $\lambda_i$ is precisely $d_i$.
+\end{lem}
+
+The result is actually a consequence of this more rudimentary
+result about Jordan blocks:
+
+\begin{prop}
+Let $M, M'$ be matrices with a single eigenvalue $\lambda$. 
+Suppose $M, M'$ are also in Jordan canonical form.
+
+Then, 
+\begin{enumerate}
+\item $M$ and $M'$ are conjugate of one another if the size of
+the Jordan blocks (counting multiplicity) are the same
+
+\item $M$ is identified uniquely by a matrix where the Jordan
+blocks are arranged by size-order where the top-left-most is
+the largest, and the bottom-right-most is the smallest
+
+\item the number of equivalent $n \times n$ matrices is in
+one-to-one correspondence with the unorder partitions of $n$.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+We will provide a very sketchy proof. Really sketchy.
+
+To prove (1), if the size of the Jordan blocks are the same,
+then you can reorder the basis to take $M$ to $M'$, and the 
+permutation matrix $P$ associated to this reodering is the desired 
+conjugate: $M = P^{-1}M'P$.
+
+Item (2) follows from item (1): since all you care about are
+the size of the Jordan blocks (counting multiplicity), a Jordan
+matrix is equivalent to one where the Jordan blocks are ordered
+by size from the top.
+
+For (3): notice that the size of the Jordan blocks form a
+partition of the size of the matrix. Two matrices are equivalent
+if the unordered partitions are the same (proved in (1)).
+\end{proof}
+
+\comment{
+This is essentially the argument given in Artin's book (and is
+univeral amongst algebra texts that present this result, though 
+the style of the presentation may be different).
+
+The main idea of the proof is to show that we can think of $V$
+as a module over the polynomial ring $\C[x]$. Using the fact
+that we know exactly the structure of these modules because
+$\C[x]$ is a principle ideal domain (), 
+
+we obtain
+a characterization of
+
+There are a number of results which we will mention in passing, 
+and we will not prove them in detail for the sake of brevity, 
+though please feel free to ask me to clarify as needed:
+
+\begin{lem}\label{lem:Cx_is_PID}
+Let $\C[x]$ be the polynomial algebra in one (free) variable. Then
+$\C[x]$ is an Euclidean domain and a principle ideal domain (PID).
+\end{lem}
+\begin{proof}
+The somewhat sketchy proof goes like this: an Euclidean domain
+is PID (see Artin Chapter 11, Proposition 2.20 on page 398). It 
+suffices, then, to show that $\C[x]$ is an Euclidean domain.
+
+Recall that a domain is a ring such that the product of any two 
+nonzero elements of the ring cannot be $0$. That is, $R$ is a
+domain if for elements $f, g$ of $R$, $fg = 0$ then $f = 0$ or
+$g = 0$. 
+
+Showing that $\C[x]$ is a domain is straightforward.
+\footnote{A proof: to see that $\C[x]$ is a domain, we need to 
+show that the product of two nonzero polynomials cannot be zero. 
+Pick two nonzero polynomials $f(x)$ and $g(x)$, and let $ax^n$ and
+$bx^m$ be the leading term of $f(x)$ and $g(x)$ respectively. The 
+product $f(x)g(x)$ has a leading term $abx^{n + m}$ which is 
+certainly not zero.}
+
+To see that $\C[x]$ has satisfy the Euclidean condition, we will
+must show that for any $f(x)$ and $q(x)$ in $\C[x]$ and with
+polynomial degree $n$ and $m$ respectively. Then there exists
+$g(x)$ such that $f(x) = g(x)q(x) + r(x)$ where the polynomial
+degree of $r(x)$ is less than $m$. This condition is modelled 
+after long division with remainder. While is this not the most
+general notion of a ring being Euclidean (see Artin Chapter 11,
+2.17 on page 397), for all intents and purposes, this is good
+enough for us.
+
+Let $f(x)$ and $q(x)$ (which has polynomial degree $m$) be 
+arbitrary polynomials in $\C[x]$. We proceed by induction on the 
+difference between the degree of $f(x)$ and $q(x)$ (starting with 
+\[
+\deg f(x) - \deg q(x) = -1,
+\] 
+i.e. $\deg f(x) < \deg q(x)$). If $f(x)$ has a degree strictly 
+less than $q(x)$ , then we are done: let $g(x) = 0$ and $r(x) = 
+f(x)$, and the condition is satisfied. 
+
+Now, suppose the Euclidean condition holds for all polynomials 
+whose degree is $n$ more than that of $q(x)$, i.e. all polynomials
+of degree $n + m$; let $f(x)$ be some polynomial whose degree is 
+$n + m + 1$. Suppose further that $ax^{n + m + 1}$ is the leading 
+term of $f(x)$ and $bx^m$ is the leading term of $q(x)$. Notice
+that we can cancel the leading term of $f(x)$ by subtracting from
+it a multiple of $q(x)$: let $h(x)$ be the polynomial $f(x) - 
+\frac{a}{b}x^{n + 1}q(x)$. Then, $h(x)$ is a polynomial with 
+degree $n + m$. By the induction hypothesis, $h(x) = g(x)q(x) +
+r(x)$. So $f(x) = (g(x) + ax^{m + 1}/b)q(x) + r(x)$.
+\end{proof}
+
+\begin{lem}[The Structure Theorem of PIDs]
+\end{lem}
+
+This is essentially a generalization of the arguments provided
+in Artin Chapter 12 Theorem 6.4 on page 472.
+}

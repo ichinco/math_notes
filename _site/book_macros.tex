@@ -1,0 +1,25 @@
+\usepackage[a4paper,bindingoffset=0.2in,left=1in,right=1in,top=1.5in,bottom=1.5in,footskip=.25in]{geometry}
+\usepackage{etoolbox}
+\usepackage{makeidx}
+\usepackage[linktocpage=true,hidelinks]{hyperref}
+\usepackage{enumitem} % http://ctan.org/pkg/enumitem
+
+\setenumerate[1]{label={(\arabic*)}} % Global setting 
+
+\makeatletter
+\if@twoside
+   \patchcmd{\ps@headings}%
+      {\@evenhead{\thepage\hfil\slshape\leftmark}}%
+      {\@evenhead{\thepage\hfil}}{}{}
+\fi
+   \patchcmd{\ps@headings}%
+      {\@oddhead{{\slshape\rightmark}\hfil\thepage}}%
+      {\@oddhead{\hfil\thepage}}{}{}  
+\makeatother
+\pagestyle{headings}
+
+\newcommand{\Preface}{\chapter*{Preface}}
+\renewcommand{\DEF}[2]{\index{#1}\emph{#2}}
+
+% making index
+\makeindex
