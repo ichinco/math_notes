@@ -1,0 +1,14 @@
+# Site settings
+author: glassfin
+name: To Appease My Hunger
+email: knight.w.fu@gmail.com
+description: > # this means to ignore newlines until "baseurl:"
+  Doing math by the seat of my pants.
+baseurl: ""
+url: "http://blog.knightfu.com" # the base hostname & protocol for your site
+twitter_username: evilwire
+github_username:  evilwire
+excerpt_separator: <!--more-->
+
+# Build settings
+markdown: kramdown
