@@ -36,6 +36,12 @@
  *
  * Update the foundational and global aspects of the page.
  */
+ 
+ .displaymath {
+	display:block;
+	text-align:center;
+	margin: 0px auto .7em;
+ }
 
 /* Prevent scroll on narrow devices */
 html,
