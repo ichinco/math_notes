@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Speculation: What Technology will soon be"
+title: "Hello! This is a blog post!"
 tags: speculation, technology
 ---
 
-Hello! This is a blog post!
-===========================
+Section 1
+---------
