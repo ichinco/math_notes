@@ -211,10 +211,11 @@ package data
 import (
         "testing"
         "io"
+        "bytes"
         "github.com/pkg/errors"
 )
 type MockOpen struct {
-        Content []byte
+        Content io.Reader
         Error error
         
         filePath string
@@ -222,7 +223,7 @@ type MockOpen struct {
 
 func NewMockOpen(content []byte, err error) *MockOpen {
         return &MockOpen {
-                Content: content,        
+                Content: bytes.NewBuffer(content),        
                 Error: error,
         }
 }
@@ -236,7 +237,7 @@ func (mock *MockOpen) Open(filePath string) (io.Reader, error) {
 func TestReadData(t *testing.T) {
         testCases := []struct {
                 FileName string
-                Content []byte
+                Content []bytes
                 Data *Data
         }{
                 { /* ... */ },
@@ -259,6 +260,11 @@ func TestReadData(t *testing.T) {
                 // verify that the correct parametre(s) is (are) 
                 // passed to the external function
                 if mock.filePath != c.FileName {
+                        t.Error(/* ... */)
+                }
+                
+                // test that data generated is as expected
+                if !theSame(data, c.Data) {
                         t.Error(/* ... */)
                 }
         }
