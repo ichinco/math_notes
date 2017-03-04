@@ -39,7 +39,7 @@ of your code aside, it is definitely of some interest to think about ways that w
 increase unit test coverage of your application.
 
 We introduce this pattern in the context of the following common use cases: opening 
-a file for reading. The idea is here to test as much of the code as possible. While 
+a file for reading. The idea here is to test as much of the code as possible. While 
 in general this may be somewhat wasteful, it is of practical interest to
 
 - achieve 100% unit test coverage of code
@@ -100,15 +100,15 @@ After all, the `struct` author thought ahead and used the `io.Reader` interface
 as input, which allowed us to pass in a `bytes.Buffer` --- smart! But what about
 `ReadData`?
 
-One possible way to do this is to actually use files: one for each positive test case that
+One possible way to test this code is to actually use files: one for each positive test case that
 you want to exercise; a few invalid file paths or improperly permissioned files to generate
-common IO errors for the negative test cases. Another way is write tests is to stub out `os.Open`
+common IO errors for the negative test cases. Another way tests is to stub out `os.Open`
 and pass in a substitute function instead. While there are practical advantages to the former
-approach, we will instead focus on the latter strategy --- not surprisingly. Some
+approach, we will instead focus on the latter strategy. Some
 advantages for the latter approach are:
 
-- the test data files may be hard to generate (because they are large, files are generated 
-  programmatically, or files are media or binary in nature)
+- the test data files may be hard to generate (because they are large, those files may need 
+  to be generated programmatically, or files are media or binary in nature)
 - it is easier to manage test code that pretends to be files than to manage test data files
   (when your library changes, it is easier to change test code, and harder to change test 
   files)
@@ -121,10 +121,10 @@ advantages for the latter approach are:
   entirely in the test code/binary itself; the correctness of tests is wholly determined 
   by code and code alone
   
-Whatever the benefits may be, the `os.Open` is an archetype example for any
+Whatever the benefits may be, the `os.Open` is an archetypical example of any
 library function whose (potentially complicated) behaviours are driven by
 external states that can be mocked, and whose outputs are readily usable data structures
-or interface objects. Other examples include `rand.Float32`, `gocql.RandomUUID`, or `s3.New`.
+or interface objects. Other examples include `rand.Float32`, `time.Now`, or `s3.New`.
 
 ### Refactoring Pattern
 
@@ -305,10 +305,10 @@ type TestNewExternal(t *testing.T) {
 }
 ```
 
-All covered! All for the price of some added code complexity. What you 
-have gained with this code are:
+Now we're all covered! All for the price of a little (arguably necessary) 
+increase in code complexity. What you have gained with this code are:
 
-- programmatic access to the content of the data file
+- programmatic access to the content of the stubbed input data
 - 100% test coverage (for what it's worth)
 - ease of generating new test cases and more logically complete input coverage
 - semantically apparent test cases in the test source file itself
@@ -318,7 +318,7 @@ come to mind:
 
 - there is at least one layer of redirection: rather than making an API call
   directly, we are wrapping the library function in potentially multiple layers,
-  and that can be confusing.
+  and this pattern can be confusing to someone new to the code-base
 - there are some performance penalties paid by creating objects of function
   pointers. In isolation, the penalities are relatively scant, but in aggregate,
   the penalities add up. If performance over testability is a big factor, don't
