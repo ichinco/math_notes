@@ -28,7 +28,10 @@ string problems have I oversimplified in my mind?
 Well in a series of blog entries, I want to discuss a few truly astounding 
 "linear" results that I learned from some of the great cybertutors 
 (references below), starting with the one that has the narrowest focus: 
-Manacher's Algorithm.
+Manacher's Algorithm. In fact, I have never seen a complete exposition
+of Manacher's algorithm presented together with proof of its optimality.
+I thought I'd be the documentarian of this clever algorithm; I find that
+it's an effort well-spent.
 
 In future parts, I would like to discuss Knuth-Morris-Pratt (Part 2), 
 Aho-Corasick (Part 3), Compact Tries (Part 4) and Suffix
@@ -271,8 +274,11 @@ Given a non-nil string `s`
      `k - P[k] < j - r` then set `P[i] = i + P[j] - j`. If
      `k - P[k] > j - r` then set `P[i] = P[k]`. Otherwise, find the 
      largest palindrome centered at `i` starting at position `k + r`. 
-     Suppose its radius is `maxLen` then set `P[i] = maxLen`. Update 
-     `j` and `r` if `maxLen` is larger than `P[j]`
+     Suppose its radius is `maxLen` then set `P[i] = maxLen`. 
+
+     Update `j` and `r` if the palindrome centered at `i` extends beyond
+     the palindrome centered at `j` -- because the former offers us more
+     symmetry data than the latter.
 
 3. Return the array `P`
 
@@ -326,7 +332,9 @@ func FindPManacher(s string) []int {
             maxLen := findMaxPalindromeLen(s, i, j + P[j] + 1)
             P[i] = maxLen
 
-            if P[i] > P[j] {
+	    // if the palindrome centered at i extends beyond 
+	    // the boundary of that centered at j, then update j
+            if i + P[i] > j + P[j] {
                 j = i
             }
         }
@@ -334,7 +342,7 @@ func FindPManacher(s string) []int {
 }
 ```
 
-## Example
+## Walk-through of an Example
 
 Let us run through the code for an example string `"dadccdadccd"`. Recall 
 that the string we will be operating on is actually augmented with
@@ -363,7 +371,8 @@ we see that `k - P[k]` equals 6, which equals `j - P[j]`.
 At this point, we start to find the maximal palindrome length
 at `i` starting at position `9`. In this case, the length of
 the maximal palindrome is 8. We set `P[8] = 8` and, since this
-is larger than `P[7]`, we set `j = 8`.
+new palindrome extends beyond the one centered at 7, we set 
+`j = 8`.
 
 Finally, going into (3), we have `i = 13`, `j = 8` and 
 `P = [0,1,0,3,0,1,0,1,8,1,0,1,0,0,...,0]`. We see that `i < j + P[j]`
@@ -373,7 +382,7 @@ we are now executing the `else`-block.
 
 At this point, we find the maximal palindrome length at 13 starting at
 17; the maximal palindrome has length 9, and we set `P[13] = 9`. Since
-`P[j] < P[i]` this updates `j = 13`.
+`i + P[i] > j + P[j]`, we update `j = 13`.
 
 ## Linearity of Manacher's Algorithm
 
@@ -385,71 +394,129 @@ in quadratic time.
 There are two ways that we would like to prove that `FindPManacher`, in fact,
 has linear run-time. The first way involves a clever argument and no additional
 machinery. The second way -- which we will cover in another entry -- involves
-potential functions and amortized analysis.
+potential functions and amortized analysis. 
+
+Before we present the first proof, we make the observation that the
+only potential source of non-linearity of Manacher's is from comparing
+characters in `findMaxPalindromeLen`; the other cases in the `for`-loop
+in `FindPManacher` are constant time operations. Therefore, to demonstrate
+that `FindPManacher` runs in linear time, it is enough to prove that
+the total number of comparisons across all iterations is {{im}}O(n){{mi}}.
+In fact, the first proof shows that the total number of comparisons is
+bounded by {{im}}2n{{mi}}.
 
 > The function `FindPManacher` runs in linear time with respect to 
 the length of the input string `s`.
 
-*Proof*: We claim that, as we iterate through `s` in `FindPManacher`,each 
-index {{im}}i{{mi}} in `s` is visited at most once by `findMaxPalindromeLen` 
-as the right index.
+*Proof*: Fix the string {{im}}s{{mi}}, and consider the iterations
+in `FindPManacher` on each character of {{im}}s{{mi}}. Let {{im}}C_i{{mi}}
+denote the number of character comparisons that takes place during the 
+{{im}}i^{\mathrm{th}}{{mi}} iteration. These character comparisons would
+take place as a result of calling `findMaxPalindromeLen` when, for a given
+centre, we compare right and left characters with respect to the center
+to detect the size of the largest possible palindrome.
 
-To see this, suppose the index {{im}}i{{mi}} is first visited as a right index for 
-some palindrome centered at {{im}}j{{mi}}. Here, the fact that {{im}}i{{mi}} is the 
-right palindrome means {{im}}i > j{{mi}}. 
+Recall that, as we iterate through each character, {{im}}j{{mi}} is tracking
+the index of the center of the palindrome whose right boundary extends to
+the right-most position in {{im}}s{{mi}}. That is, {{im}}j + P[j]{{mi}} is
+the largest of all known palindromes at the start of the 
+{{im}}i^{\mathrm{th}}{{mi}} iteration. Let {{im}}I_i{{mi}} denote
+{{im}}2n - i - (j + P[j]){{mi}}.
 
-Furthermore, to prove that 
-{{im}}i{{mi}} is visited at most once as the _right_ index, we just need 
-to consider all indices {{im}}k{{mi}} between {{im}}j{{mi}} and {{im}}i{{mi}} -- 
-since all calls to `findMaxPalindromeLen` for palindrome centering on indices 
-larger than {{im}}i{{mi}} would visit {{im}}i{{mi}} as the _left_ index.
+The idea is to show that
 
-Now, if `findMaxPalindromeLen` has visited {{im}}i{{mi}} in a palindrome centered
-at {{im}}j{{mi}}, it must mean that the character at {{im}}i{{mi}} is part of the
-palindrome. In fact, any index {{im}}k{{mi}} such that {{im}}j < k \leq i{{mi}}
-is part of the palindrome centered at {{im}}j{{mi}}, and the largest
-palindrome centered at {{im}}j{{mi}} must extend to at least {{im}}i{{mi}}.
+1. {{im}}I_i{{mi}} is strictly monotonic, with {{im}}I_0 = 2n{{mi}} and
+   {{im}}I_n = 1{{mi}}
+2. {{im}}C_i \leq I_{i - 1} - I_i{{mi}}
 
-If {{im}}k{{mi}} is some index between {{im}}j{{mi}} and {{im}}i{{mi}},
-then the only way that the iteration at {{im}}k{{mi}} would trigger a 
-call to `findMaxPalindromeLen` is if the maximal palindrome centered at
-{{im}}k{{mi}} extends to at least the right boundary of {{im}}j{{mi}} (the
-`else`-case).
+With (1) and (2), we have that
+{{dm}}\sum_i C_i \leq \sum_i (I_{i - 1} - I_{i}) = I_0 - I_n = 2n - 1{{md}}
+Therefore, the number of comparisons are bounded by {{im}}2n{{mi}}. (As math 
+and computer science treats indices differently, some inconsequential tidyness 
+is sacrificed for the sake of bridging the two languages.) 
 
-However, in that case, {{im}}j + P[j] > i{{mi}} and `findMaxPalindromeLen` 
-will begin comparing at a right index that is at least {{im}}i + 1{{mi}}, 
-thereby proving the claim.
+The intuition here is that the more you compare in 
+the {{im}}i^{\mathrm{th}}{{mi}} iteration, the less you need to compare in
+future iterations; you may need to access the same characters multiple times
+-- for example in `aaaab` -- but total number of times you access 
+the same characters is bounded by {{im}}n{{mi}}.
 
-To complete the argument, let 
-{{im}}F_i{{mi}} be the number of comparisons made during the invocation
-`findMaxPalindromeLen(s, i, j + P[j])` (Notice the value of {{im}}j{{mi}} is
-fixed by the value of {{im}}i{{mi}}). For notational correctness, let 
-{{im}}F_i = 0{{mi}} for all {{im}}i{{mi}} that does not result in a call to
-`findMaxPalindromeLen`. Since each comparison must visit a right and a left
-index, we have:
+To show (1), note that {{im}}i{{mi}} increases strictly monotonically and
+{{im}}j + P[j]{{mi}} only changes when {{im}}i + P[i] > j + P[j]{{mi}}
+for some {{im}}i{{mi}}. 
 
-{{dm}}\sum_i F_i \leq n \sim O(n){{md}}
+The fact that {{im}}I_0 = 2n{{mi}} follows from initial values of {{im}}j{{mi}}
+and {{im}}P[j]{{mi}}. When {{im}}i = n{{mi}}, {{im}}j + P[j] = n - 1{{mi}}. It
+follows that {{im}}I_{n} = 1{{mi}}. 
 
-In particular, the total number of operations involving `findMaxPalindromeLen`
-across all iterations of {{im}}i{{mi}} is linear with respect to the length
-of `s`. 
+To show (2), recall that during an iteration within `FindPManacher`, we do one 
+of the following:
 
-Since all other branches in the `for`-loop in `FindPManacher` are constant time
-operations, the entire function runs in linear time with respect to the length
-of the input string.
+(a) we retrieve existing values from {{im}}P{{mi}} and do not make any 
+  comparisons and just increment {{im}}i{{mi}}.
+
+(b) we make some comparison but does not change the right-most boundary 
+  {{im}}j + P[j]{{mi}}
+
+(c) we make some comparisons and we do update the right-most boundary 
+  {{im}}j + P[j]{{mi}}
+
+In case (a), {{im}}I_{i - 1} - I_i = 1{{mi}} and {{im}}C_i = 0{{mi}}. In
+this case, {{im}}C_i \leq I_{i - 1} - I_i{{mi}}. Good.
+
+In case (b), {{im}}I_{i - 1} - I_i = 1{{mi}}. We claim that we made 
+at most one comparisons. If we don't update {{im}}j + P[j]{{mi}}, this
+means that for some {{im}}i > j{{mi}} and {{im}}P[i] = j + P[j] - i{{mi}},
+and value returned by `findMaxPalindromeLen(s, i, j + P[j] + 1)` is
+{{im}}j + P[j] - i{{mi}}.
+
+Looking at the function `findMaxPalindromeLen`, this can only happen if either
+{{im}}j + P[j] + 1 > len(s){{mi}} -- in which case, the number of comparison
+is 0, the pivot of {{im}}j + P[j] + 1{{mi}} about {{im}}i{{mi}} is less than 0
+-- impossible, or {{im}}s[j + P[j] + 1]{{mi}} is the only comparison made --
+namely, we made a single comparison.
+
+In all these possible cases, {{im}}1 = I_{i - 1} - I_i \geq C_i{{mi}}. Good.
+
+Finally, in case (c), suppose {{im}}(i + P[i]) - (j + P[j]) = c{{mi}}. We want
+to show that {{im}}c \geq C_i - 1{{mi}}. To see this, we know that the return values
+of `findMaxPalindromeLen` is {{im}}P[i]{{mi}} by definition. This must mean that the
+value of `right` at the end of the `for`-loop in 
+`findMaxPalindrome(s, i, j + P[j] + 1)` is {{im}}i + P[i] + 1{{mi}}. Since `right`
+is initialised at `j + P[j] + 1`, the number of iterations in the `for`-loop is
+at most {{im}}i + P[i] - (j + P[j]) + 1{{mi}}, each of which is possibly a 
+comparison. It follows that {{im}}c \geq C_i - 1{{mi}} and 
+{{dm}}I_{n - 1} - I_n = i - (i - 1) + c \geq 1 + (C_i - 1) = C_i{{md}}
+as desired.
 {{im}}\blacksquare{{mi}}
 
-Those familiar with amortized analysis will note that we have already 
-established the foundational argument for proving that Manacher's algorithm
-has amortized linear runtime. We would like to cover the details more
-formally.
+Readers familiar with potential functions in amortized analysis will note 
+that we actually defined a potential function {{im}}\Phi(i) = C_i{{mi}} 
+and worked around the mechanics of analysing using potential functions.
+However, we are satisfied with how little machinery we needed to present
+to prove the linearity of Manacher's algorithm that we thought it is a
+treat to include it without another few pages of the theory behind 
+amortization analysis.
 
-We leave with the following claim, which should be straight-forward:
+Before we end this section, let us note that, since it is not possible to 
+find palindromes without at least scanning the string from beginning to 
+end, the following is clear:
 
 > Manacher's algorithm has optimal run-time complexity in resolving the maximal
 palindrome question. {{im}}\blacksquare{{mi}}
+
+## Acknowledgement
+
+I want to thank the many Youtubers and authors who contributed to my
+understanding of this algorith, all of whom are represented in the
+references. 
+
+The proof of linearity is my own. However, I apologise profusely
+that ideas often overlap in shape and presentation, especially if they
+are very wrong or very right.
 
 ## Reference
 
 - [1] Hacker Rank - https://www.hackerrank.com/topics/manachers-algorithm
 - [2] Tushar Roy's Manacher Walk-through - https://www.youtube.com/watch?v=V-sEwsca1ak
+- [3] MIT OCW - 6.046 Lecture 5 - Amortization: Amortized Analysis - https://www.youtube.com/watch?v=3MpzavN3Mco
