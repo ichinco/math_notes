@@ -123,7 +123,7 @@ correctly -- would reduce the runtime from {{im}}O(n^3){{mi}} to
 
 Let's instead take a different approach. Let us create an auxiliary array
 that tracks the size of the largest possible palindrome centered at each
-character. As some palindromes may have even number of characters -- `"aa"`, say
+character. As some palindromes may have even number of characters -- `"aa"` (say)
 -- and whose point of symmetry occurs between characters, we will use a special 
 indexing trick to track these as well. Often the index tricks can be thought of
 as inserting a special character `#` between each character, and at the front
@@ -205,7 +205,7 @@ maximal palindrome centered at {{im}}i{{mi}} is contained entirely
 within the palindrome centered at {{im}}j{{mi}}. Its reflection
 about {{im}}j{{mi}} is another palindrome of exactly the same length.
 
-To see this, if its reflection were longer by 2 characters, say,
+To see this, if its reflection were longer by 2 characters (say),
 then, since {{im}}i - P[i]/2 > j - P[j]/2{{mi}}, those two characters 
 are also within the palindrome centered at {{im}}j{{mi}}, and whose
 reflection about {{im}}j{{mi}} is a longer palindrome centered at 
@@ -227,7 +227,7 @@ palindrome is clear: it is a reflection of a substring of the palindrome
 centered at {{im}}i{{mi}} about {{im}}j{{mi}}.
 
 If the maximal palindrome centered at {{im}}2j - i{{mi}} were any longer by 2
-characters, say, then the character immediately before maximal palindrome 
+characters, for example, then the character immediately before maximal palindrome 
 centered at {{im}}j{{mi}} and the character immediately after would be the 
 same, contradicting its maximality.
 {{im}}\blacksquare{{mi}}
