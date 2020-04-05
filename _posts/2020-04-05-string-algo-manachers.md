@@ -182,7 +182,7 @@ Consider the palindrome "acacdabadcaca". If you look carefully, there
 are two "off-centered" palindromic substrings (both "cac"). The fact there
 are 2 of the same value is not
 a coincidence; the right "cac" is just a reflection of the
-left one about the point of symmetry.
+left one about the point of symmetry of the parent palindrome.
 
 In fact, this is generally true: any "off-centered" palindromes 
 contained entirely within another palindrome occur in pairs. This
@@ -192,8 +192,9 @@ is because of two facts:
 2. for any palindrome, the substring after the pivot point is equal 
    to the reverse of the substring before the pivot point
 
-We might want to more formally state this insight in terms of
-maximal palindrome and the array {{im}}P{{mi}} of maximal palindrome length:
+We might want to state this insight more formally in terms of
+indices of centers of palindromes and the array {{im}}P{{mi}} of 
+maximal palindrome length:
 
 > For nonnegative integers {{im}}i{{mi}} and {{im}}j{{mi}} where 
 {{im}}i < j{{mi}}, if {{im}}i - P[i]/2 > j - P[j]/2{{mi}} then
