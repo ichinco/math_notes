@@ -326,7 +326,7 @@ func FindPManacher(s string) []int {
         
         k := pivot(i, j) 
         if k - P[k] < j - P[j] {
-            P[i] = i + P[j] - j
+            P[i] = j + P[j] - i
         } else if k - P[k] > j - P[j] {
             P[i] = P[k]
         } else {
