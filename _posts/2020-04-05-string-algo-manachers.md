@@ -25,7 +25,7 @@ or Dickens novels.
 That and similar problems made me search my soul a bit. What other
 string problems have I oversimplified in my mind?
 
-Well in a series of blog entries, I want to discuss a few truly astounding 
+In a series of blog entries, I want to discuss a few truly astounding 
 "linear" results that I learned from some of the great cybertutors 
 (references below), starting with the one that has the narrowest focus: 
 Manacher's Algorithm. In fact, I have never seen a complete exposition
@@ -200,7 +200,7 @@ maximal palindrome length:
 {{im}}i < j{{mi}}, if {{im}}i - P[i]/2 > j - P[j]/2{{mi}} then
 {{im}}P[i] = P[2j - i]{{mi}}.
 
-*Proof*: if {{im}}i - P[i] / 2 < j - P[j] / 2{{mi}} then the 
+*Proof*: if {{im}}i - P[i] / 2 > j - P[j] / 2{{mi}} then the 
 maximal palindrome centered at {{im}}i{{mi}} is contained entirely
 within the palindrome centered at {{im}}j{{mi}}. Its reflection
 about {{im}}j{{mi}} is another palindrome of exactly the same length.
@@ -325,9 +325,19 @@ func FindPManacher(s string) []int {
         } 
         
         k := pivot(i, j) 
+
         if k - P[k] < j - P[j] {
+            // if the palindrome centered at the mirror extends
+            // beyond the boundary of the palindrome, then the
+            // palindrome at i must extend to the boundary and
+            // no further
             P[i] = j + P[j] - i
+       
         } else if k - P[k] > j - P[j] {
+            // if the palindrome centered at the mirror does
+            // not extend beyond the boundary of the palindrome
+            // then the palindrome at i has exactly the same length
+            // as its mirror counterpart
             P[i] = P[k]
         } else {
             maxLen := findMaxPalindromeLen(s, i, j + P[j] + 1)
@@ -340,6 +350,8 @@ func FindPManacher(s string) []int {
             }
         }
     }
+
+    return P
 }
 ```
 
@@ -433,8 +445,8 @@ The idea is to show that
 With (1) and (2), we have that
 {{dm}}\sum_i C_i \leq \sum_i (I_{i - 1} - I_{i}) = I_0 - I_n = 2n - 1{{md}}
 Therefore, the number of comparisons are bounded by {{im}}2n{{mi}}. (As math 
-and computer science treats indices differently, some inconsequential tidyness 
-is sacrificed for the sake of bridging the two languages.) 
+and computer science treat indices differently, some tidyness is sacrificed 
+for the sake of bridging the two languages.) 
 
 The intuition here is that the more you compare in 
 the {{im}}i^{\mathrm{th}}{{mi}} iteration, the less you need to compare in
@@ -512,9 +524,9 @@ I want to thank the many Youtubers and authors who contributed to my
 understanding of this algorith, all of whom are represented in the
 references. 
 
-The proof of linearity is my own. However, I apologise profusely
-that ideas often overlap in shape and presentation, especially if they
-are very wrong or very right.
+The proof of linearity is my own. If similarity with your work appear here
+without due reference, I do apologise profusely that ideas often overlap in 
+shape and presentation, especially if they are very wrong or very right.
 
 ## Reference
 
